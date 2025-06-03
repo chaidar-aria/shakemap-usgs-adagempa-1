@@ -328,9 +328,7 @@ def create(config, profile, accept, ppath, nogrids):
     topo_file_url = "https://github.com/chaidar-aria/vs30-shakemap-usgs-adagempa/releases/download/v1.0.0-alpha/topo_30sec.grd"
     vs30_file_url = "https://github.com/chaidar-aria/vs30-shakemap-usgs-adagempa/releases/download/v1.0.0/global_vs30.grd"
 
-    print(
-        "Mengunduh global Topografi dan Vs30 dari GitHub Releases. Mohon tunggu..."
-    )
+    print("Mengunduh global Topografi dan Vs30 dari GitHub Releases. Mohon tunggu...")
 
     topo_file_path = os.path.join(topo_path, "topo_30sec.grd")
     with (
