@@ -325,26 +325,28 @@ def create(config, profile, accept, ppath, nogrids):
     #
     # url info
     #
-    url_machine = "https://apps.usgs.gov/"
-    url_topo_dir = "shakemap_geodata/topo/"
-    url_vs30_dir = "shakemap_geodata/vs30/"
-    topo_file = "topo_30sec.grd"
-    vs30_file = "global_vs30.grd"
+    topo_file_url = "https://github.com/chaidar-aria/vs30-shakemap-usgs-adagempa/releases/download/v1.0.0-alpha/topo_30sec.grd"
+    vs30_file_url = "https://github.com/chaidar-aria/vs30-shakemap-usgs-adagempa/releases/download/v1.0.0/global_vs30.grd"
 
-    print("Retrieving global topo and Vs30 files. This may take a minute...")
-    url = url_machine + url_topo_dir + topo_file
-    topo_file_path = os.path.join(topo_path, topo_file)
-    with urllib.request.urlopen(url) as response, open(
-        topo_file_path, "wb"
-    ) as out_file:
+    print(
+        "Mengunduh global Topografi dan Vs30 dari GitHub Releases. Mohon tunggu..."
+    )
+
+    topo_file_path = os.path.join(topo_path, "topo_30sec.grd")
+    with (
+        urllib.request.urlopen(topo_file_url) as response,
+        open(topo_file_path, "wb") as out_file,
+    ):
         shutil.copyfileobj(response, out_file)
-    url = url_machine + url_vs30_dir + vs30_file
-    vs30_file_path = os.path.join(vs30_path, vs30_file)
-    with urllib.request.urlopen(url) as response, open(
-        vs30_file_path, "wb"
-    ) as out_file:
+
+    vs30_file_path = os.path.join(vs30_path, "global_vs30.grd")
+    with (
+        urllib.request.urlopen(vs30_file_url) as response,
+        open(vs30_file_path, "wb") as out_file,
+    ):
         shutil.copyfileobj(response, out_file)
-    print("Done.")
+
+    print("Unduhan selesai.")
 
     do_config = True
     if not accept:
