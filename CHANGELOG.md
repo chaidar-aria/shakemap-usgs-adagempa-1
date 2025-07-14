@@ -1,5 +1,12 @@
 ## main
 
+## v4.4.3 / 2025-07-10
+    - Refactor install.sh
+    - Make OS-specific environment.yml files.
+
+## v4.4.3 / 2025-07-10
+    - Mike's changes to install to allow build in the cloud.
+
 ## v4.4.2 / 2025-02-28
     - Refactor strings for sqlite to single quote string literals.
     - Refactor to emove a bunch of linter warnings.
