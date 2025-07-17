@@ -108,7 +108,11 @@ if [ $? -ne 0 ]; then
         echo "Failed to run miniconda installer shell script. Exiting."
         exit 1
     fi
-    . $HOME/miniconda/etc/profile.d/conda.sh
+    
+    $HOME/miniconda/bin/conda init bash &>/dev/null
+    . $HOME/.bashrc
+
+
     # remove the shell script
     rm miniforge.sh
 else

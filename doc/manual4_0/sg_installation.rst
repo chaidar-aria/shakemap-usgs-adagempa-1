@@ -16,8 +16,7 @@ The Wiki does a pretty good job of explaining the installation process,
 which is fairly automated. Here we will just reiterate that things will
 go most smoothly if you use the bash shell and conda virtual environment.
 Taking a more manual approach will likely lead to conflicts with system
-software (ShakeMap runs on Python 3.7 or 3.8, while many systems still
-use 2.7 as a default) and dependency headaches.
+software and dependency headaches.
 
 Configuration
 =============
@@ -191,12 +190,11 @@ for each event.
 Downloading and Configuring Vs30 and Topography
 ===============================================
 
-We provide three files available by FTP at 
-ftp://hazards.cr.usgs.gov/shakemap:
+We provide two data files available at 
+https://apps.usgs.gov/shakemap_geodata/
 
-* *global_vs30.grd* -- The 30 arcsecond resolution Vs30 data set for the entire globe.
-* *topo_30sec.grd* -- The 30 arcsecond resolution topography data for the entire globe.
-* *topo_15sec.grd* -- The 15 arcsecond resolution topography data for the entire globe.
+* *vs30/global_vs30.grd* -- The 30 arcsecond resolution Vs30 data set for the entire globe.
+* *topo/topo_30sec.grd* -- The 30 arcsecond resolution topography data for the entire globe.
 
 By 'entire globe' we mean from 56 degrees south to 84 degrees north latitude.
 
@@ -205,25 +203,17 @@ and Vs30 files as part of the creation of a profile. If ``sm_profile`` is
 called with the ``-a`` option, these files will be downloaded automatically
 and the profile will be configured to use them.
 
-If you did not have ``sm_profile`` download the grids, you have a choice
-of 15 or 30 second resolution topography. 15 second data shows
-more detail at small scales, but causes ShakeMap to take significantly
-longer to make the various output maps. The ShakeMap system at the National
-Earthquake Information Center uses the 30 second data. If you plan to use
-the 15 second data, modify the topo file name below to topo_15sec.grd. 
 
-Note that these files are somewhat large: the 30-second topo is 238 Mb, the
-30-second Vs30 is 582 Mb, and the 15-second topo is 745 Mb.
+Note that these files are somewhat large: the 30-second topo is 238 Mb, and the
+30-second Vs30 is 582 Mb.
 
-To download the files, do::
+To use the files, do:
 
     > mkdir [home]/shakemap_data
     > mkdir [home]/shakemap_data/vs30
     > mkdir [home]/shakemap_data/topo
-    > cd [home]/shakemap_data/vs30
-    > curl ftp://hazards.cr.usgs.gov/shakemap/global_vs30.grd -o global_vs30.grd
-    > cd [home]/shakemap_data/topo
-    > curl ftp://hazards.cr.usgs.gov/shakemap/topo_30sec.grd -o topo_30sec.grd
+    > mv global_vs30.grd [home]/shakemap_data/vs30
+    > mv topo_30sec.grd [home]/shakemap_data/topo
 
 By default, the system is configured to find the Vs30 and topography files in 
 the locations described above. To set the paths to other locations or file
@@ -241,5 +231,5 @@ change the line::
     topography = <DATA_DIR>/topo/topo_30sec.grd
 
 to the path to your topography file. Note that ShakeMap completes
-the macro ``<INSTALL_DIR>`` for the profile in question, but you may set 
+the macro ``<DATA_DIR>`` for the profile in question, but you may set 
 the paths to any absolute path on your system.
