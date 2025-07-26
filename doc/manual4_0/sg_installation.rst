@@ -207,7 +207,7 @@ and the profile will be configured to use them.
 Note that these files are somewhat large: the 30-second topo is 238 Mb, and the
 30-second Vs30 is 582 Mb.
 
-To use the files, do:
+To use the files, do::
 
     > mkdir [home]/shakemap_data
     > mkdir [home]/shakemap_data/vs30

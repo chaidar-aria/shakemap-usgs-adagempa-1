@@ -52,6 +52,11 @@ def get_parser():
         help="Event type (earthquake, explosion, etc.)",
     )
     parser.add_argument(
+        "--property-review-status",
+        nargs="*",
+        help="Event review status ('automatic', 'reviewed')",
+    )
+    parser.add_argument(
         "--property-eventsourcecode", help="Event source code (i.e., 2008abcd"
     )
     parser.add_argument(
@@ -78,7 +83,7 @@ def main():
     args, unknown = parser.parse_known_args(clean_argv)
     install_path, data_path = get_config_paths()
     if not os.path.isdir(data_path):
-        print(f"{data_path} is not a valid directory.")
+        logger.info(f"{data_path} is not a valid directory.")
         sys.exit(1)
 
     config = queue.get_config(install_path)
@@ -166,6 +171,16 @@ def main():
         # don't do that anymore.
         pass
 
+    #
+    # Only run events that have been reviewed by the network operator
+    # (this restriction is subject to change)
+    #
+    if args.property_review_status[0] != 'reviewed':
+        logger.info(
+            "Event id %s is not reviewed; (review status=%s)"
+            % (eventid, args.property_review_status[0])
+        )
+        sys.exit(0)
     # We've weeded out the messages we don't want, so construct an event
     # dictionary and send it to the queue
     if not args.property_title:
@@ -238,6 +253,12 @@ def main():
         action = "Event added"
     else:
         action = "Origin updated"
+    if args.property_review_status == "reviewed":
+        reviewed = "true"
+    elif args.property_review_status == "automatic":
+        reviewed = "false"
+    else:
+        reviewed = "unknown"
     event = {
         "id": eventid,
         "netid": args.source,
@@ -250,6 +271,7 @@ def main():
         "locstring": location,
         "alt_eventids": eventid,
         "action": action,
+        "reviewed": reviewed,
     }
     logger.info(f"Sending event {eventid} to queue.")
 

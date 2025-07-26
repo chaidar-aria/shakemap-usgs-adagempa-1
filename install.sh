@@ -92,24 +92,24 @@ fi
 # Is conda installed?
 conda --version
 if [ $? -ne 0 ]; then
-    echo "No conda detected, installing miniconda..."
+    echo "No conda detected, installing miniforge..."
     command -v curl >/dev/null 2>&1 || { echo >&2 "Script requires curl but it's not installed. Aborting."; exit 1; }
     miniforge_url="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
     curl -L $miniforge_url -o miniforge.sh &>/dev/null
     # if curl fails, bow out gracefully
     if [ $? -ne 0 ];then
-        echo "Failed to download miniconda installer shell script. Exiting."
+        echo "Failed to download miniforge installer shell script. Exiting."
         exit 1
     fi
-    echo "Install directory: $HOME/miniconda"
-    bash miniforge.sh -f -b -p $HOME/miniconda &>/dev/null
+    echo "Install directory: $HOME/miniforge"
+    bash miniforge.sh -f -b -p $HOME/miniforge &>/dev/null
     # if miniforge.sh fails, bow out gracefully
     if [ $? -ne 0 ];then
-        echo "Failed to run miniconda installer shell script. Exiting."
+        echo "Failed to run miniforge installer shell script. Exiting."
         exit 1
     fi
     
-    $HOME/miniconda/bin/conda init bash &>/dev/null
+    $HOME/miniforge/bin/conda init bash &>/dev/null
     . $HOME/.bashrc
 
 

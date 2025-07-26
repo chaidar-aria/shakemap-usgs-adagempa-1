@@ -1,8 +1,11 @@
 ## main
 
+    - Update receive_origins_gsm.py to only use reviewed origins.                  
+    - Another small fix to the installation docs.
     - Fix the vs30 and topo docs.
-    - Eric's fix to the install docs.
-    - Mike's fixes to install.sh.
+    - Eric's fix to the install docs (outdated info about python versions).
+    - Mike's fix to install.sh to properly initialize conda.
+    - Rename conda install dir to be "miniforge" rather than "miniconda" to avoid confusion about what we are actually installing. 
 
 ## v4.4.3 / 2025-07-10
     - Refactor install.sh
