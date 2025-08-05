@@ -1,5 +1,8 @@
 ## main
 
+## v4.4.5 / 2025-08-01
+    - Update to shakemap-modules 1.1.10.
+    - Set to use numpy>=1.26.
     - Update receive_origins_gsm.py to only use reviewed origins.                  
     - Another small fix to the installation docs.
     - Fix the vs30 and topo docs.
@@ -7,7 +10,7 @@
     - Mike's fix to install.sh to properly initialize conda.
     - Rename conda install dir to be "miniforge" rather than "miniconda" to avoid confusion about what we are actually installing. 
 
-## v4.4.3 / 2025-07-10
+## v4.4.4 / 2025-07-10
     - Refactor install.sh
     - Make OS-specific environment.yml files.
 
