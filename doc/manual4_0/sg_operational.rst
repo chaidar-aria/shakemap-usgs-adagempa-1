@@ -342,7 +342,7 @@ Software Installation
 ***********************************
 
 To install the ShakeMap software, the
-`ShakeMap Wiki <https://github.com/usgs/shakemap/wiki>`_
+`ShakeMap Wiki <https://code.usgs.gov/ghsc/esi/shakemap/-/wikis/home>`_
 provides the easiest and most basic approach. Following the process described
 therein and running some practice events should be the first steps for
 anyone wishing to deploy ShakeMap. From there, careful study of the

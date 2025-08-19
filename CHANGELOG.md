@@ -1,5 +1,10 @@
 ## main
 
+    - Fix broken links in docs (mostly to github).
+
+## v4.4.6 / 2025-08-14
+    - Update to shakemap-modules 1.1.11.
+
 ## v4.4.5 / 2025-08-01
     - Update to shakemap-modules 1.1.10.
     - Set to use numpy>=1.26.

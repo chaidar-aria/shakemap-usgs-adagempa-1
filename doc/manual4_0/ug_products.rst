@@ -123,7 +123,7 @@ For ShakeMap, the two main data files (*shake_data.hdf* and
 *shake_result.hdf*) are accessed through the methods of the
 shakelib classes **ShakeMapInputContainer** and **ShakeMapOutputContainer**.
 For documentation see the `shakelib container module 
-<https://cbworden.github.io/shakelib/shakelib.utils.container.html>`_.
+<https://code.usgs.gov/ghsc/esi/esi-shakelib/-/blob/main/src/esi_shakelib/utils/containers.py?ref_type=heads>`_.
 
 shake_data.hdf
 --------------
@@ -141,7 +141,7 @@ It is generally not necessary for operators to access this file other
 than through the interfaces of **assemble** and **augment**. For
 developers, the file
 is accessed through the shakelib `ShakeMapInputContainer interface
-<https://cbworden.github.io/shakemap/shakelib/shakelib.utils.containers.html>`_.
+<https://code.usgs.gov/ghsc/esi/esi-shakelib/-/blob/main/src/esi_shakelib/utils/containers.py?ref_type=heads>`_.
 
 shake_result.hdf
 ----------------

@@ -7,12 +7,13 @@ authors = [
     {name = "Mike Hearne", email = "mhearne@usgs.gov"},
     {name = "Eric Thompson", email = "emthompson@usgs.gov"},
 ]
-license = {file = "LICENSE.md"}
+license = "CC0-1.0"
+license-files  = ["LICENSE.md"]
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 
 dependencies = [
-    "shakemap-modules[all]>=1.1.10",
+    "shakemap-modules[all]>=1.1.11",
     "esi-utils-comcat>=0.0.2",
     "python-daemon>=3.0",
     "lockfile>=0.12.2",

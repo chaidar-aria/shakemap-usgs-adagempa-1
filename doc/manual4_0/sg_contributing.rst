@@ -302,7 +302,7 @@ an **upstream** remote reference at this time as well::
 
   $ git clone git@github.com:username/shakemap.git
   $ cd shakemap
-  $ git remote add upstream https://github.com/usgs/shakemap.git
+  $ git remote add upstream https://code.usgs.gov/ghsc/esi/shakemap.git
 
 Working in their local repository, the developer creates a feature 
 branch based off the master branch and begins work. Source code is 

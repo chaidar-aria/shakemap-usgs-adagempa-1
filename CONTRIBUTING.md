@@ -13,7 +13,7 @@ into the project you can [fork this repository][2] and
 Please see the Guidelines for Contributors section of the 
 ShakeMap manual for information on contribution to ShakeMap:
 
-http://cbworden.github.io/shakemap/manual4_0/tg_contributing.html
+https://code.usgs.gov/ghsc/esi/shakemap/-/blob/main/CONTRIBUTING.md?ref_type=heads
 
 For additional information, please see the [USGS software development best
 practices guide][4] and the [USGS Code of Scientific Conduct][5]. 
