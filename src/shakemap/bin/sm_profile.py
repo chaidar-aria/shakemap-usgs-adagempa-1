@@ -326,10 +326,10 @@ def create(config, profile, accept, ppath, nogrids):
     #
     # url info
     #
-    topo_file_url = "https://apps.usgs.gov/shakemap_geodata/topo/topo_30sec.grd"
-    vs30_file_url = "https://apps.usgs.gov/shakemap_geodata/vs30/global_vs30.grd"
-    # topo_file_url = "https://github.com/chaidar-aria/vs30-shakemap-usgs-adagempa/releases/download/v1.0.0-alpha/topo_30sec.grd"
-    # vs30_file_url = "https://github.com/chaidar-aria/vs30-shakemap-usgs-adagempa/releases/download/v1.0.0/global_vs30.grd"
+    # topo_file_url = "https://apps.usgs.gov/shakemap_geodata/topo/topo_30sec.grd"
+    # vs30_file_url = "https://apps.usgs.gov/shakemap_geodata/vs30/global_vs30.grd"
+    topo_file_url = "https://github.com/chaidar-aria/vs30-shakemap-usgs-adagempa/releases/download/v1.0.0-alpha/topo_30sec.grd"
+    vs30_file_url = "https://github.com/chaidar-aria/vs30-shakemap-usgs-adagempa/releases/download/v1.0.0/global_vs30.grd"
 
     print("Mengunduh global Topografi dan Vs30 dari GitHub Releases. Mohon tunggu...")
 
