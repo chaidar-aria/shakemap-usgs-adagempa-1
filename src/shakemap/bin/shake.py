@@ -3,6 +3,7 @@
 # stdlib imports
 import argparse
 import importlib
+import importlib.metadata
 import inspect
 import io
 import os.path
@@ -13,10 +14,8 @@ import sys
 import time
 import traceback
 from collections import OrderedDict
-import importlib
-import importlib.metadata
+
 from configobj import ConfigObj
-from validate import Validator
 
 # local imports
 from esi_utils_rupture.origin import read_event_file
@@ -28,6 +27,7 @@ from shakemap_modules.utils.config import (
     get_configspec,
 )
 from shakemap_modules.utils.logging import get_logger
+from validate import Validator
 
 VERSION = importlib.metadata.version("shakemap")
 CANCEL_FILE = "CANCELED"
@@ -126,7 +126,10 @@ def _format_error_info(exception, eventid):
     stack_trace = stringio.getvalue()
     stringio.close()
     hostname = socket.gethostname()
-    fmt = "\nEarthquake: %s\nHost: %s\nEvent ID: %s\nException: %s\n" "Stack Trace: %s"
+    fmt = (
+        "\nEarthquake: %s\nHost: %s\nEvent ID: %s\nException: %s\n"
+        "Stack Trace: %s"
+    )
     error_msg = fmt % (eqinfo, hostname, eventid, str(exception), stack_trace)
     return error_msg
 
@@ -149,7 +152,8 @@ def get_parser():
         epilog += f"    - {inspect.getdoc(core_class['class'])}\n"
 
     epilog += (
-        '\nUse "shake help command" to see the options for a ' "specific command.\n"
+        '\nUse "shake help command" to see the options for a '
+        "specific command.\n"
     )
 
     parser = argparse.ArgumentParser(
@@ -158,18 +162,28 @@ def get_parser():
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("eventid", help="The id of the event to process.")
-    parser.add_argument("cmds", nargs=argparse.REMAINDER, help="The modules to run.")
+    parser.add_argument(
+        "cmds", nargs=argparse.REMAINDER, help="The modules to run."
+    )
     group = parser.add_mutually_exclusive_group()
     group.add_argument(
-        "-d", "--debug", action="store_true", help="Print all informational messages."
+        "-d",
+        "--debug",
+        action="store_true",
+        help="Print all informational messages.",
     )
-    group.add_argument("-q", "--quiet", action="store_true", help="Print only errors.")
-    parser.add_argument("-l", "--log", action="store_true", help="Log all output.")
+    group.add_argument(
+        "-q", "--quiet", action="store_true", help="Print only errors."
+    )
+    parser.add_argument(
+        "-l", "--log", action="store_true", help="Log all output."
+    )
     parser.add_argument(
         "-f",
         "--force",
         action="store_true",
-        help="Force the command(s) to run regardless of out " "of date dependencies.",
+        help="Force the command(s) to run regardless of out "
+        "of date dependencies.",
     )
     parser.add_argument(
         "-c",
@@ -233,7 +247,9 @@ def main():
         if _config_["process_canceled"]:
             os.remove(cancel_file)
         else:
-            logger.error(f"Event {args.eventid} has been canceled: aborting run")
+            logger.error(
+                f"Event {args.eventid} has been canceled: aborting run"
+            )
             return
 
     #
@@ -249,7 +265,9 @@ def main():
             if not args.cancel:
                 # cancel option was not set
                 if args.dryrun is False:
-                    logger.info("No modules specified, checking for autoun_modules...")
+                    logger.info(
+                        "No modules specified, checking for autoun_modules..."
+                    )
                 args.cmds = shlex.split(_config_["autorun_modules"])
                 if len(args.cmds):
                     if args.dryrun is False:
@@ -299,7 +317,9 @@ def main():
             cmd = arglist.pop(0)
 
             if cmd.startswith("-"):
-                raise KeyError(f'Command "{oldcmd}" cannot process option "{cmd}"')
+                raise KeyError(
+                    f'Command "{oldcmd}" cannot process option "{cmd}"'
+                )
 
             if cmd not in _classes_:
                 raise KeyError(f'Command "{cmd}" not found in ShakeMap.')
@@ -354,17 +374,23 @@ def main():
                     logger.warning("Exiting.")
                     sys.exit(0)
                 else:
-                    logger.warning(f'Running "{cmd}" because of --force option.')
+                    logger.warning(
+                        f'Running "{cmd}" because of --force option.'
+                    )
                 break
             t1 = time.time()
             try:
                 obj.execute()
             except TerminateShakeMap as e:
-                logger.warning(f"ShakeMap terminated in module {cmd}: {str(e)}")
+                logger.warning(
+                    f"ShakeMap terminated in module {cmd}: {str(e)}"
+                )
                 break
             t2 = time.time()
             elapsed = t2 - t1
-            logger.info(f"Finished running command {cmd}: Elapsed {elapsed:.2f} secs")
+            logger.info(
+                f"Finished running command {cmd}: Elapsed {elapsed:.2f} secs"
+            )
             # create/update the contents.xml file
             obj.writeContents()
             cdb.updateCommand(cmd)

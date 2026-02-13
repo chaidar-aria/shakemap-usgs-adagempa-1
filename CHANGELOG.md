@@ -1,6 +1,10 @@
 ## main
 
+    - Moved install scripts into scripts folder. 
+      - There is a user install script (conda-lock) and a development install script (same as before).
+    - Add conda-lock support for pinning environmental dependencies
     - Fix broken links in docs (mostly to github).
+    - Pin scipy version to >=1.16.0 and <1.17.0 to resolve Amazon Machine Image build issue.
 
 ## v4.4.6 / 2025-08-14
     - Update to shakemap-modules 1.1.11.

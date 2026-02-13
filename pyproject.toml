@@ -18,6 +18,7 @@ dependencies = [
     "python-daemon>=3.0",
     "lockfile>=0.12.2",
     "importlib_resources",
+    "scipy>=1.16.0,<1.17.0",
 ]
 
 [project.optional-dependencies]
