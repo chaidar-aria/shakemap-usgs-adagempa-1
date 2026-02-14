@@ -1,1 +1,1 @@
-This folder should contain HDF files with generic amplification factors.  See https://ghsc.code-pages.usgs.gov/esi/shakemap/manual4_0/sg_input_formats.html#generic-amplification-factors-file-format for details.
+This folder should contain HDF files with generic amplification factors.  See http://usgs.github.io/shakemap/manual4_0/tg_formats.html#generic-amplification-factors for details.

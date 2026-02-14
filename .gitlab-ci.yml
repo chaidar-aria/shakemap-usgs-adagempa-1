@@ -52,7 +52,7 @@ stages:
 .build_config:
   script:
     - conda init bash
-    - bash scripts/install_shakemap_dev.sh -d
+    - bash install.sh -d
     - conda activate shakemap
     - echo "***********************************************"
     - conda list

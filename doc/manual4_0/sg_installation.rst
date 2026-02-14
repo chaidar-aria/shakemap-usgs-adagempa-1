@@ -4,7 +4,7 @@
 Installation and Configuration
 ******************************
 
-The `ShakeMap Wiki <https://code.usgs.gov/ghsc/esi/shakemap/-/wikis/home>`_ provides
+The `ShakeMap Wiki <https://github.com/usgs/shakemap/wiki>`_ provides
 a basic quick-start guide to installing and running ShakeMap v4. The
 present section is intended to provide supplementary material and
 additional detail for installing, configuring, and running v4.
