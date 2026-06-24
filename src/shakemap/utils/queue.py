@@ -20,8 +20,8 @@ import daemon
 import lockfile
 import psutil
 from configobj import ConfigObj
-from esi_utils_rupture import constants
-from esi_utils_rupture.origin import write_event_file
+from esi_shakelib.rupture import constants
+from esi_shakelib.rupture.origin import write_event_file
 from shakemap_modules.utils.amps import AmplitudeHandler
 from shakemap_modules.utils.config import get_data_path
 

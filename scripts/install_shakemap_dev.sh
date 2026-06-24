@@ -91,7 +91,11 @@ elif [ ! grep -Fxq "backend" $matplotlibrc ]; then
     echo "backend : Agg" >> $matplotlibrc
     echo "NOTE: A non-interactive matplotlib backend (Agg) has been set for this user."
 else
-    sed -i '' 's/backend.*/backend : Agg/' $matplotlibrc
+    if [[ "$unamestr" == "Darwin" ]]; then
+        sed -i '' 's/backend.*/backend : Agg/' $matplotlibrc
+    else
+        sed -i 's/backend.*/backend : Agg/' $matplotlibrc
+    fi
     echo "NOTE: $matplotlibrc has been changed to set 'backend : Agg'"
 fi
 
@@ -186,6 +190,11 @@ if [ $? -ne 0 ];then
     exit 1
 fi
 
+echo "Pinning setuptools for compatibility..."
+if ! pip install "setuptools<82" ; then
+    echo "Installation of setuptools failed."
+    exit 1
+fi
 
 if $developer; then
     echo "Installing shakemap with developer tools."

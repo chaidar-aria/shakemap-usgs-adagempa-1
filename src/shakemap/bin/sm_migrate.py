@@ -17,13 +17,13 @@ from configobj import ConfigObj
 import numpy as np
 
 # local imports
-from esi_utils_rupture import constants
-from esi_utils_rupture.factory import (
+from esi_shakelib.rupture import constants
+from esi_shakelib.rupture.factory import (
     get_rupture,
     rupture_from_dict_and_origin,
     text_to_json,
 )
-from esi_utils_rupture.origin import Origin, read_event_file, write_event_file
+from esi_shakelib.rupture.origin import Origin, read_event_file, write_event_file
 from esi_utils_time.ancient_time import HistoricTime
 from esi_shakelib.modules.utils import get_extent
 from shakemap_modules.utils.config import (

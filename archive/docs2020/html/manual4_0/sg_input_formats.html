@@ -1,0 +1,1218 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Output Data Formats" href="sg_output_formats.html"><link rel="prev" title="Queueing Events" href="sg_queue.html">
+        <link rel="prefetch" href="../_static/shakemap_icon_transparent_background.png" as="image">
+
+    <link rel="shortcut icon" href="../_static/shakemap_icon.ico"><!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>Input Data Formats - ShakeMap 4.4.10.dev2+g38de50b28.d20260421 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=edb751ed" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+<div class="announcement">
+  <aside class="announcement-content">
+     
+    <a href='https://www.usgs.gov/' style='text-decoration: none'>
+        <img id="announcement_left_img" valign="middle" src="https://code.usgs.gov/ghsc/esi/shakemap/-/raw/main/doc/_static/usgs.png"/></a>
+    ShakeMap
+    <a href='https://code.usgs.gov/ghsc/esi/shakemap' style='text-decoration: none'>
+        <img id="announcement_right_img" valign="middle"
+            src="https://code.usgs.gov/ghsc/esi/shakemap/-/raw/main/doc/_static/GitLabLogo/gitlab-logo-500 cropped.png"/></a>
+ 
+  </aside>
+</div>
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">ShakeMap 4.4.10.dev2+g38de50b28.d20260421 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/shakemap_icon_transparent_background.png" alt="Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="sm4_technical_guide.html">1. Technical Guide</a><input aria-label="Toggle navigation of 1. Technical Guide" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="tg_philosophy.html">Philosophy of Estimating and Interpolating Ground Motions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tg_parameters.html">Recorded Ground-motion Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tg_processing.html">Data Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tg_select.html">Ground Motion Model Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tg_verification.html">Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="sm4_users_guide.html">2. Users Guide</a><input aria-label="Toggle navigation of 2. Users Guide" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="ug_background.html">Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_shakemap_operations.html">ShakeMap Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_choice_of_parameters.html">Discussion of Chosen Map Parameters (Intensity Measures)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_products.html">Products and Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_intensity.html">Representing Macroseismic Intensity on Maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_archives.html">ShakeMap Archives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_applications.html">Applications of ShakeMap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_related_systems.html">Related Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_disclaimers.html">Disclaimers</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="sm4_software_guide.html">3. Software and Implementation Guide</a><input aria-label="Toggle navigation of 3. Software and Implementation Guide" checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sg_architecture.html">Software Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_installation.html">Installation and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_queue.html">Queueing Events</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Input Data Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_output_formats.html">Output Data Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_operational.html">Operational Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_operational.html#shakemap-implementation-checklist">ShakeMap Implementation Checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_operational.html#software-installation">Software Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_contributing.html">Guidelines for Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sm4_acknowledgments.html">4. Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sm4_references.html">5. References and Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sm4_glossary.html">6. Glossary</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="input-data-formats">
+<span id="sec-input-formats-4"></span><h1>Input Data Formats<a class="headerlink" href="#input-data-formats" title="Link to this heading">¶</a></h1>
+<p>ShakeMap has a number of input files, some of which may be provided in more
+than one format. See below for a discussion of some of them.</p>
+<section id="event-xml-file">
+<span id="subsec-event-xml-file"></span><h2>Event XML File<a class="headerlink" href="#event-xml-file" title="Link to this heading">¶</a></h2>
+<p>This file is <em>required</em>.</p>
+<p>The earthquake origin information is contained in a simple XML file
+called <em>event.xml</em> that is contained in the event’s <em>current</em>
+directory. An example file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">earthquake</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;us1000db5t&quot;</span> <span class="n">netid</span><span class="o">=</span><span class="s2">&quot;us&quot;</span> <span class="n">lat</span><span class="o">=</span><span class="s2">&quot;38.7161&quot;</span> <span class="n">lon</span><span class="o">=</span><span class="s2">&quot;69.9779&quot;</span>
+<span class="n">depth</span><span class="o">=</span><span class="s2">&quot;5.0&quot;</span> <span class="n">mag</span><span class="o">=</span><span class="s2">&quot;5.7&quot;</span> <span class="n">locstring</span><span class="o">=</span><span class="s2">&quot;11km SE of Roghun, Tajikistan&quot;</span>
+<span class="n">network</span><span class="o">=</span><span class="s2">&quot;USGS National Earthquake Information Center, PDE&quot;</span>
+<span class="n">time</span><span class="o">=</span><span class="s2">&quot;2018-03-29T22:54:12Z&quot;</span> <span class="n">mech</span><span class="o">=</span><span class="s2">&quot;SS&quot;</span> <span class="n">reference</span><span class="o">=</span><span class="s2">&quot;Smith, et. al. 2018&quot;</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>The attributes of the earthquake element are:</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id</p></td>
+<td><p>A string, consisting of the event ID. This should be
+be unique for the network code <strong>netid</strong> (see below).</p></td>
+</tr>
+<tr class="row-odd"><td><p>netid</p></td>
+<td><p>Usually a two character network code, but can be any
+string.</p></td>
+</tr>
+<tr class="row-even"><td><p>network</p></td>
+<td><p>Long description of the organization behind netid.
+This field is required, but may be the empty string</p></td>
+</tr>
+<tr class="row-odd"><td><p>lat</p></td>
+<td><p>Latitude at earthquake hypocenter.</p></td>
+</tr>
+<tr class="row-even"><td><p>lon</p></td>
+<td><p>Longitude at earthquake hypocenter.</p></td>
+</tr>
+<tr class="row-odd"><td><p>depth</p></td>
+<td><p>Depth at earthquake hypocenter.</p></td>
+</tr>
+<tr class="row-even"><td><p>mag</p></td>
+<td><p>Magnitude of earthquake.</p></td>
+</tr>
+<tr class="row-odd"><td><p>time</p></td>
+<td><p>Time of earthquake origin, always UTC in
+YYYY-MM-DDTHH:MM:SS.fZ format.</p></td>
+</tr>
+<tr class="row-even"><td><p>locstring</p></td>
+<td><p>String describing earthquake location.</p></td>
+</tr>
+<tr class="row-odd"><td><p>mech</p></td>
+<td><p>(optional) Focal mechanism, one of “RS”, “SS”,
+“NM”, or “ALL”.</p></td>
+</tr>
+<tr class="row-even"><td><p>reference</p></td>
+<td><p>(optional) Source for hypocenter information</p></td>
+</tr>
+<tr class="row-odd"><td><p>event_type</p></td>
+<td><p>(optional) Event type, one of ‘ACTUAL’ or ‘SCENARIO’</p></td>
+</tr>
+<tr class="row-even"><td><p>productcode</p></td>
+<td><p>(optional) Used to distinguish between different
+ShakeMaps created for the same event (e.g., one map
+showing the extent of shaking, and another zoomed
+into a city of interest). If the productcode is not
+supplied, it will be taken from the name of the
+data directory (which is also the “event_id” that is
+supplied to the <strong>shake</strong> program).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="moment-xml-file">
+<h2>Moment XML File<a class="headerlink" href="#moment-xml-file" title="Link to this heading">¶</a></h2>
+<p>This file is <em>optional</em>.</p>
+<p>Users may provide moment tensor information in a QuakeML file called
+<em>moment.xml</em> that is in the event’s <em>current</em> directory. The QuakeML
+format is described exhaustively here: <a class="reference external" href="https://quake.ethz.ch/quakeml/">https://quake.ethz.ch/quakeml/</a></p>
+<p>The QuakeML <em>must</em> contain a <em>focalMechanism</em> element with at least
+complete <em>nodalPlanes</em> and <em>principalAxes</em> elements. See the QuakeML
+documentation for details.</p>
+</section>
+<section id="shakemap-xml-data-file">
+<h2>ShakeMap XML Data File<a class="headerlink" href="#shakemap-xml-data-file" title="Link to this heading">¶</a></h2>
+<p>These files are <em>optional</em>.</p>
+<p>To inform your ShakeMap with real data, either macroseismic intensity
+or instrumented accelerations and velocities, you may include any
+number of XML files ending in “*_dat.xml” as well as one called
+“stationlist.xml” in the event’s <em>current</em>
+directory. These files consists of a number of <em>elements</em>, with
+defined <em>attributes</em>.</p>
+<p>The <em>earthquake</em> element (optional) is described above in the section
+<a class="reference internal" href="#subsec-event-xml-file"><span class="std std-ref">Event XML File</span></a>.</p>
+<p>Following the earthquake element is the <em>stationlist</em> element, which
+has a <em>created</em> attribute, which is the same as the one in the
+earthquake element.</p>
+<p>Example stationlist element:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">stationlist</span> <span class="n">created</span><span class="o">=</span><span class="s2">&quot;1529614595&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The stationlist element contains zero to many <em>station</em> elements, with the following attributes:</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>code</p></td>
+<td><p>The station code.</p></td>
+</tr>
+<tr class="row-odd"><td><p>name</p></td>
+<td><p>The station name and/or description.</p></td>
+</tr>
+<tr class="row-even"><td><p>insttype</p></td>
+<td><p>Description of instrument type.</p></td>
+</tr>
+<tr class="row-odd"><td><p>lat</p></td>
+<td><p>Station latitude (in decimal degrees).</p></td>
+</tr>
+<tr class="row-even"><td><p>lon</p></td>
+<td><p>Station longitude (in decimal degrees).</p></td>
+</tr>
+<tr class="row-odd"><td><p>source</p></td>
+<td><p>Agency that maintains the station (i.e., SCSN, NSMP ,…).</p></td>
+</tr>
+<tr class="row-even"><td><p>netid</p></td>
+<td><p>The network ID string; for MMI observations this must be one
+of ‘MMI,’ ‘CIIM,’ ‘DYFI,’ or ‘INTENSITY.’.</p></td>
+</tr>
+<tr class="row-odd"><td><p>commtype</p></td>
+<td><p>Digital or analog communications (DIG or ANA).</p></td>
+</tr>
+<tr class="row-even"><td><p>loc</p></td>
+<td><p>(optional) Free form text describing station location.</p></td>
+</tr>
+<tr class="row-odd"><td><p>intensity</p></td>
+<td><p>The intensity value of the observation (decimal).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Example station element:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">station</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;ADO&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Adelanto Receiving Station&quot;</span>
+<span class="n">insttype</span><span class="o">=</span><span class="s2">&quot;TriNet&quot;</span> <span class="n">lat</span><span class="o">=</span><span class="s2">&quot;34.55046&quot;</span> <span class="n">lon</span><span class="o">=</span><span class="s2">&quot;-117.43391&quot;</span> <span class="n">source</span><span class="o">=</span><span class="s2">&quot;SCSN</span>
+<span class="ow">and</span> <span class="n">TriNet</span><span class="s2">&quot; commtype=&quot;</span><span class="n">DIG</span><span class="s2">&quot; netid=”CI” loc=&quot;</span><span class="n">Adelanto</span><span class="p">,</span> <span class="n">on</span> <span class="n">Hwy</span> <span class="mi">395</span><span class="s2">&quot;&gt;</span>
+</pre></div>
+</div>
+<p>The station element can contain zero to many <em>comp</em> elements. Each
+comp element can contain one <em>acc</em> element and one <em>vel</em> element,
+and may contain <em>psa03</em>, <em>psa10</em> and <em>psa30</em> elements (one of
+each). These refer to peak acceleration, velocity, and 5%-damped
+pseduo-spectral acceleration (at 0.3, 1.0, and 3.0 sec period) values
+for the named channel at the named station. The acc, vel, psa03,
+psa10, and psa30 elements are empty but have the following attributes:</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>value</p></td>
+<td><p>The amplitude value.</p></td>
+</tr>
+<tr class="row-odd"><td><p>flag</p></td>
+<td><p>Flag indicating problematic data (optional).</p></td>
+</tr>
+<tr class="row-even"><td><p>units</p></td>
+<td><p>(optional) See below.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>If the units are unspecifies, the value attributes are expected to have units of:</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>acc, pga</p></td>
+<td><p>%g (i.e., percent of the earth’s nominal gravitational
+acceleration).</p></td>
+</tr>
+<tr class="row-odd"><td><p>vel, pgv</p></td>
+<td><p>cm/s (centimeters per second).</p></td>
+</tr>
+<tr class="row-even"><td><p>psa</p></td>
+<td><p>%g.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The <strong>units</strong> attribute may also be specified if the amplitudes are in
+logarithmic (natural) units:</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Units Designator</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>acc, pga</p></td>
+<td><p>“ln(g)” (i.e., log of the earth’s nominal gravitational
+acceleration).</p></td>
+</tr>
+<tr class="row-odd"><td><p>vel, pgv</p></td>
+<td><p>“ln(cm/s)” (log of centimeters per second).</p></td>
+</tr>
+<tr class="row-even"><td><p>psa</p></td>
+<td><p>“ln(g)”.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The operator may also specify a standard deviations for “observations” that are
+the mean of a distribution. This standard deviation is specified in natural
+logarithmic units regardless of the units of the amplitudes themselves. The
+standard deviations are specified with the <strong>ln_sigma</strong> attribute.</p>
+<p>The flag attribute indicates problematic data. Any value other than
+“0” (zero) or “” (i.e., an empty string) will cause ShakeMap to reject
+the amplitude (and, in fact, all the amplitudes of that type for that
+station). Though any non-zero flag will kill an amplitude, the
+following flags are currently defined:</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Flag</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>T</p></td>
+<td><p>Automatically flagged by ShakeMap as an outlier.</p></td>
+</tr>
+<tr class="row-odd"><td><p>M</p></td>
+<td><p>Manually flagged (in grind.conf) by the ShakeMap operator.</p></td>
+</tr>
+<tr class="row-even"><td><p>G</p></td>
+<td><p>Glitch. Amplitude clipped or below instrument noise threshold.</p></td>
+</tr>
+<tr class="row-odd"><td><p>I</p></td>
+<td><p>Incomplete (a data gap existed in the time window used to
+calculate the amplitude).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>An abbreviated example of a complete station data file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+&lt;!DOCTYPE stationlist [
+... DTD description ...
+]&gt;
+&lt;stationlist created=&quot;1070030689&quot;&gt;
+&lt;station code=&quot;ADO&quot; name=&quot;Adelanto Receiving Station&quot;
+insttype=&quot;TriNet&quot; lat=&quot;34.55046&quot; lon=&quot;-117.43391&quot; source=&quot;SCSN
+and TriNet&quot; commtype=&quot;DIG&quot; netid=”CI” loc=&quot;Adelanto, on Hwy 395
+&quot;&gt;
+&lt;comp name=&quot;HHE&quot;&gt;
+&lt;acc value=&quot;0.0083&quot; flag=&quot;0&quot; /&gt;
+&lt;vel value=&quot;0.0030&quot; flag=&quot;0&quot; /&gt;
+&lt;psa03 value=&quot;0.0146&quot; flag=&quot;0&quot; /&gt;
+&lt;psa10 value=&quot;0.0049&quot; flag=&quot;0&quot; /&gt;
+&lt;psa30 value=&quot;0.0003&quot; flag=&quot;0&quot; /&gt;
+&lt;/comp&gt;
+&lt;comp name=&quot;HHN&quot;&gt;
+&lt;acc value=&quot;0.0088&quot; flag=&quot;0&quot; /&gt;
+&lt;vel value=&quot;0.0028&quot; flag=&quot;0&quot; /&gt;
+&lt;psa03 value=&quot;0.0111&quot; flag=&quot;0&quot; /&gt;
+&lt;psa10 value=&quot;0.0040&quot; flag=&quot;0&quot; /&gt;
+&lt;psa30 value=&quot;0.0004&quot; flag=&quot;0&quot; /&gt;
+&lt;/comp&gt;
+&lt;comp name=&quot;HHZ&quot;&gt;
+&lt;acc value=&quot;0.0087&quot; flag=&quot;0&quot; /&gt;
+
+&lt;vel value=&quot;0.0016&quot; flag=&quot;0&quot; /&gt;
+&lt;psa03 value=&quot;0.0080&quot; flag=&quot;0&quot; /&gt;
+&lt;psa10 value=&quot;0.0013&quot; flag=&quot;0&quot; /&gt;
+&lt;psa30 value=&quot;0.0002&quot; flag=&quot;0&quot; /&gt;
+&lt;/comp&gt;
+&lt;/station&gt;
+... additional station tags (omitted)...
+&lt;station code=&quot;WSS&quot; name=&quot;West Side Station&quot; insttype=&quot;TriNet&quot;
+lat=&quot;34.1717&quot; lon=&quot;-118.64971&quot; source=&quot;SCSN and TriNet&quot;
+commtype=&quot;DIG&quot; netid=”CI” loc=&quot;Hidden Hills, Valley Circle Dr.&quot;&gt;
+&lt;comp name=&quot;HHE&quot;&gt;
+&lt;acc value=&quot;0.0225&quot; flag=&quot;0&quot; /&gt;
+&lt;vel value=&quot;0.0031&quot; flag=&quot;0&quot; /&gt;
+&lt;psa03 value=&quot;0.0182&quot; flag=&quot;0&quot; /&gt;
+&lt;psa10 value=&quot;0.0016&quot; flag=&quot;0&quot; /&gt;
+&lt;psa30 value=&quot;0.0002&quot; flag=&quot;0&quot; /&gt;
+&lt;/comp&gt;
+&lt;comp name=&quot;HHN&quot;&gt;
+&lt;acc value=&quot;0.0209&quot; flag=&quot;0&quot; /&gt;
+&lt;vel value=&quot;0.0029&quot; flag=&quot;0&quot; /&gt;
+&lt;psa03 value=&quot;0.0234&quot; flag=&quot;0&quot; /&gt;
+&lt;psa10 value=&quot;0.0019&quot; flag=&quot;0&quot; /&gt;
+&lt;psa30 value=&quot;0.0001&quot; flag=&quot;0&quot; /&gt;
+&lt;/comp&gt;
+&lt;comp name=&quot;HHZ&quot;&gt;
+&lt;acc value=&quot;0.0187&quot; flag=&quot;0&quot; /&gt;
+&lt;vel value=&quot;0.0020&quot; flag=&quot;0&quot; /&gt;
+&lt;psa03 value=&quot;0.0073&quot; flag=&quot;0&quot; /&gt;
+&lt;psa10 value=&quot;0.0005&quot; flag=&quot;0&quot; /&gt;
+&lt;psa30 value=&quot;0.0000&quot; flag=&quot;0&quot; /&gt;
+&lt;/comp&gt;
+&lt;/station&gt;
+&lt;/stationlist&gt;
+</pre></div>
+</div>
+<p>Intensity data uses the same format of input XML as other ground
+motion data, but uses three new attributes to the station tag: the
+<strong>intensity</strong> attribute should be set to the decimal intensity for the
+“station;” the <strong>intensity_stddev</strong> should specify the standard deviation
+of the intensity observation; the <strong>intensity_flag</strong> should specify the
+flag (usually “0”) of the observation (see flag table, above). Also the
+netid attribute should be set to “MMI,” “CIIM,” “DYFI,”
+or “INTENSITY” (all four are currently equivalent). If netid is set to
+one of these values, any amplitude data (i.e., data enclosed in a comp
+tag) will be ignored and <em>model</em> will use the configured GMICE to derive
+the ground motions. Likewise, if netid is not one of these values, the
+intensity attribute will be ignored and grind will compute intensity
+using the GMICE.</p>
+<p>Below is an example of a station tag that contains intensity information:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;station code=&quot;91042&quot; name=&quot;ZIP Code 91042 (Intensity VII, 38
+responses)&quot; insttype=&quot;USGS (Did You Feel It?)&quot; lat=&quot;34.282604&quot;
+lon=&quot;-118.237943&quot; source=&quot;USGS (Did You Feel It?)&quot; netid=&quot;CIIM&quot;
+commtype=&quot;USGS (Did You Feel It?)&quot; intensity=&quot;7.4&quot; intensity_stddev=&quot;0.3&quot;
+intensity_flag=&quot;0&quot;&gt;
+</pre></div>
+</div>
+<p>The earthquake and stationlist XML files are combined in the GeoJSON
+output file provided to the public.</p>
+</section>
+<section id="shakemap-json-data-file">
+<span id="subsec-json-input-stations-4"></span><h2>ShakeMap JSON Data File<a class="headerlink" href="#shakemap-json-data-file" title="Link to this heading">¶</a></h2>
+<p>ShakeMap will also accept a ShakeMap-produced GeoJSON <em>stationlist.json</em>
+file as input (see <a class="reference internal" href="ug_products.html#subsec-stationlist-geojson"><span class="std std-ref">Stationlist GeoJSON</span></a>). Additional
+JSON files of the form <em>*_dat.json</em> file may also be included in the input.</p>
+<p>The information contained in the JSON input files is similar to that in
+the XML input files (see above), but is structured differently:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;features&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="mf">143.157196</span><span class="p">,</span>
+          <span class="mf">42.014999</span>
+        <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;II.ERM&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Erimo, Hidaka, Hokkaido, Japan&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;II.ERM&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pgv&quot;</span><span class="p">:</span> <span class="s2">&quot;null&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;commType&quot;</span><span class="p">:</span> <span class="s2">&quot;UNK&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;vs30&quot;</span><span class="p">:</span> <span class="mi">760</span><span class="p">,</span>
+        <span class="s2">&quot;intensity&quot;</span><span class="p">:</span> <span class="s2">&quot;null&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;network&quot;</span><span class="p">:</span> <span class="s2">&quot;II&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;distance&quot;</span><span class="p">:</span> <span class="mf">462.284</span><span class="p">,</span>
+        <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;II&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;channels&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span>
+            <span class="s2">&quot;amplitudes&quot;</span><span class="p">:</span> <span class="p">[</span>
+              <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;sa(3.0)&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ln_sigma&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;flag&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.0009</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%g</span><span class="s2">&quot;</span>
+              <span class="p">},</span>
+              <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pgv&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ln_sigma&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;flag&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.0056</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;cm/s&quot;</span>
+              <span class="p">},</span>
+              <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;sa(1.0)&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ln_sigma&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;flag&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.0051</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%g</span><span class="s2">&quot;</span>
+              <span class="p">},</span>
+              <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pga&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ln_sigma&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;flag&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.0118</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%g</span><span class="s2">&quot;</span>
+              <span class="p">},</span>
+              <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;sa(0.3)&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ln_sigma&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;flag&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.0201</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%g</span><span class="s2">&quot;</span>
+              <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;BHZ&quot;</span>
+          <span class="p">},</span>
+          <span class="p">{</span>
+            <span class="s2">&quot;amplitudes&quot;</span><span class="p">:</span> <span class="p">[</span>
+              <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;sa(3.0)&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ln_sigma&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;flag&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%g</span><span class="s2">&quot;</span>
+              <span class="p">},</span>
+              <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pgv&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ln_sigma&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;flag&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.0058</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;cm/s&quot;</span>
+              <span class="p">},</span>
+              <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;sa(1.0)&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ln_sigma&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;flag&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.0069</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%g</span><span class="s2">&quot;</span>
+              <span class="p">},</span>
+              <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pga&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ln_sigma&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;flag&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.0146</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%g</span><span class="s2">&quot;</span>
+              <span class="p">},</span>
+              <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;sa(0.3)&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ln_sigma&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;flag&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.026</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%g</span><span class="s2">&quot;</span>
+              <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;BH2&quot;</span>
+          <span class="p">},</span>
+          <span class="p">{</span>
+            <span class="s2">&quot;amplitudes&quot;</span><span class="p">:</span> <span class="p">[</span>
+              <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;sa(3.0)&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ln_sigma&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;flag&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.0012</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%g</span><span class="s2">&quot;</span>
+              <span class="p">},</span>
+              <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pgv&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ln_sigma&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;flag&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.0073</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;cm/s&quot;</span>
+              <span class="p">},</span>
+              <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;sa(1.0)&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ln_sigma&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;flag&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.0046</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%g</span><span class="s2">&quot;</span>
+              <span class="p">},</span>
+              <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pga&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ln_sigma&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;flag&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.0182</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%g</span><span class="s2">&quot;</span>
+              <span class="p">},</span>
+              <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;sa(0.3)&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ln_sigma&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="s2">&quot;flag&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.0235</span><span class="p">,</span>
+                <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%g</span><span class="s2">&quot;</span>
+              <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;BH1&quot;</span>
+          <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;station_type&quot;</span><span class="p">:</span> <span class="s2">&quot;seismic&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;intensity_flag&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;intensity_stddev&quot;</span><span class="p">:</span> <span class="s2">&quot;null&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;instrumentType&quot;</span><span class="p">:</span> <span class="s2">&quot;OBSERVED&quot;</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="o">&lt;</span><span class="n">additional</span> <span class="s2">&quot;features&quot;</span> <span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="p">,</span> <span class="n">stations</span><span class="p">)</span><span class="o">&gt;</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that the names of the intensity measure types are lower case,
+and the spectral accelerations are of the form <em>sa(1.0)</em> where the
+number in paraentheses is the period. Additional fields may be present
+in the JSON file, but they will be ignored. Intensity observations
+should have a <strong>netid</strong> as specified for the XML files (see above),
+and should have a <strong>channels</strong> element that is an empty list
+(i.e., “channels: []”).</p>
+</section>
+<section id="source-text-file">
+<h2>Source Text File<a class="headerlink" href="#source-text-file" title="Link to this heading">¶</a></h2>
+<p>Because most ShakeMap installations automatically generate XML input
+files and write them to the input directory, manual changes made by
+the operator to the event.xml file will generally be overwritten by
+the next automatic run. We therefore provide a mechanism by which the
+operator may override or supplement any of the event-specific data in
+event.xml. The operator may add an optional file to an event’s input
+directory called <em>source.txt</em>. The structure of the file is one
+parameter per line, in the form <em>parameter=value</em>. In particular, the
+operator may specify the source mechanism with “mech” (this is the
+equivalent of the “type” attribute in event.xml), which may be one of
+“RS,” “SS,” “NM,” or “ALL” for reverse slip, strike slip, normal, and
+unspecified mechanisms, respectively.  Any of the other source
+parameters may also be set: eid, location, time, lat, lon, depth, mag,
+etc.. Blank lines and lines beginning with ‘#’ (i.e., comments) are
+ignored.</p>
+</section>
+<section id="rupture-specification">
+<h2>Rupture Specification<a class="headerlink" href="#rupture-specification" title="Link to this heading">¶</a></h2>
+<p>There are three classes of rupture objects:</p>
+<ul class="simple">
+<li><p><cite>PointRupture</cite></p></li>
+<li><p><cite>QuadRupture</cite></p></li>
+<li><p><cite>EdgeRupture</cite></p></li>
+</ul>
+<p>A <cite>PointRupture</cite> is just a point representation of the earthquake and
+is generated from the origin and so no additional specification is
+required. In this case, distance calculations use approximate adjustments
+to convert from epicentral distance to finite distances based on the
+earthquake magnitude.</p>
+<p>There are two extended-source rupture objects: a <cite>QuadRupture</cite> and an
+<cite>EdgeRupture</cite>. There are some general rules for the specification of the
+rupture vertices that apply to both of the extended-source rupture
+objects:</p>
+<ul class="simple">
+<li><p>Vertices must start on the top edge of the rupture.</p></li>
+<li><p>The top and bottom edges must contain the same number of vertices.</p></li>
+<li><p>The first and last points must be identical to close the polygon, and this
+means that there must always be an odd number of vertices.</p></li>
+<li><p>The top edge of the rupture must always be above the bottom edge.</p></li>
+</ul>
+<p>In cross section, a single-segment multiple-quadrilateral rupture might look
+schematically like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">_</span><span class="o">.-</span><span class="n">P1</span><span class="o">-.</span><span class="n">_</span>
+<span class="n">P0</span><span class="s1">&#39;        &#39;</span><span class="n">P2</span><span class="o">---</span><span class="n">P3</span>
+<span class="o">|</span>                  \
+<span class="n">P7</span><span class="o">---</span><span class="n">P6</span><span class="o">----</span><span class="n">P5</span><span class="o">-------</span><span class="n">P4</span>
+</pre></div>
+</div>
+<p>An <cite>EdgeRupture</cite> does not have any additional constraints beyond those already
+described. This rupture would be initialized as an <cite>EdgeRupture</cite> because P1 causes
+the top edges of two of the constituent quadrilaterals to not be horizontal, which
+is a requirement for the <cite>QuadRupture</cite> class.</p>
+<p>A <cite>QuadRupture</cite> consists of one or more quadrilaterals that can be grouped
+into segments. The distance calculations are faster for a <cite>QuadRupture</cite> than
+and <cite>EdgeRupture</cite>. The additional requirements for the vertices of a <cite>QuadRupture</cite>
+are:</p>
+<ul class="simple">
+<li><p>The top and bottom edges of each quadrilateral are horizontal. In the example
+there are three quadrilateriasl: P0-P1-P6-P7, P1-P2-P5-P6, P2-P3-P4-P5. Of those,
+only the last one fulfills this criteria.</p></li>
+<li><p>The four points that define each quadrilateral must be approximately co-planar.</p></li>
+</ul>
+<p>In ShakeMap version 3, ruptures were specified in a <cite>*_fault.txt</cite> file format. We
+still support this format for backwards compatibility but we prefer to use the
+GeoJSON format described below. Eventually we will stop support for the older
+<cite>*_fault.txt</cite> file format.</p>
+</section>
+<section id="rupture-geojson-file">
+<h2>Rupture GeoJson File<a class="headerlink" href="#rupture-geojson-file" title="Link to this heading">¶</a></h2>
+<p>This file is <em>optional</em>.</p>
+<p>Rupture (also referred to as “finite fault”) files are defined in ShakeMap 4
+as GeoJSON files, a standard format for representing geospatial
+data. This format is described in great detail here:
+<a class="reference external" href="https://tools.ietf.org/html/rfc7946">https://tools.ietf.org/html/rfc7946</a></p>
+<p>The rupture format consists of a <em>FeatureCollection</em>, containing one
+to many Features. The FeatureCollection should contain a dictionary
+called <em>metadata</em>, which contains of the following fields:</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id</p></td>
+<td><p>A unique string, consisting of netid plus
+event ID.</p></td>
+</tr>
+<tr class="row-odd"><td><p>netid</p></td>
+<td><p>Usually a two character network code, but can be any
+string.</p></td>
+</tr>
+<tr class="row-even"><td><p>network</p></td>
+<td><p>Long description of the organization behind netid.</p></td>
+</tr>
+<tr class="row-odd"><td><p>lat</p></td>
+<td><p>Latitude at earthquake hypocenter.</p></td>
+</tr>
+<tr class="row-even"><td><p>lon</p></td>
+<td><p>Longitude at earthquake hypocenter.</p></td>
+</tr>
+<tr class="row-odd"><td><p>depth</p></td>
+<td><p>Depth at earthquake hypocenter.</p></td>
+</tr>
+<tr class="row-even"><td><p>mag</p></td>
+<td><p>Magnitude of earthquake.</p></td>
+</tr>
+<tr class="row-odd"><td><p>time</p></td>
+<td><p>Time of earthquake origin, always UTC in
+YYYY-MM-DDTHH:MM:SSZ format.</p></td>
+</tr>
+<tr class="row-even"><td><p>locstring</p></td>
+<td><p>String describing earthquake location.</p></td>
+</tr>
+<tr class="row-odd"><td><p>reference</p></td>
+<td><p>Source for rupture information.</p></td>
+</tr>
+<tr class="row-even"><td><p>mech</p></td>
+<td><p>Focal mechanism, one of “RS”, “SS”,
+“NM”, or “ALL”.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note that the only <em>required</em> field for specifying a rupture is <em>reference</em> and
+that the other fields are merged with origin information and are included when
+this file is output after running ShakeMap.</p>
+<p>Each Feature must contain either a <em>Point</em> or <em>MultiPolygon</em>
+geometry. Note that there is usually no reason to use the <em>Point</em> Feature type
+when specifying a rupture, but the output rupture file is a <em>Point</em> type for
+<cite>PointRupture</cite> object.</p>
+<p>The file should be named <em>rupture.json</em> and placed in the event’s
+<em>current</em> directory. Here is a single-segment single-quadrilaterial example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;reference&quot;</span><span class="p">:</span> <span class="s2">&quot;Wald, D. J., T. H. Heaton, and K. W. Hudnut (1996). The Slip History of the 1994 Northridge, California, Earthquake Determined from Strong-Motion, Teleseismic, GPS, and Leveling Data, Bull. Seism. Soc. Am. 86, S49-S70.&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;features&quot;</span><span class="p">:</span> <span class="p">[{</span>
+      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;rupture type&quot;</span><span class="p">:</span> <span class="s2">&quot;rupture extent&quot;</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;MultiPolygon&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">[</span>
+            <span class="p">[</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">118.421</span><span class="p">,</span> <span class="mf">34.315</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">118.587</span><span class="p">,</span> <span class="mf">34.401</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">118.693</span><span class="p">,</span> <span class="mf">34.261</span><span class="p">,</span> <span class="mf">20.427</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">118.527</span><span class="p">,</span> <span class="mf">34.175</span><span class="p">,</span> <span class="mf">20.427</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">118.421</span><span class="p">,</span> <span class="mf">34.315</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">]</span>
+            <span class="p">]</span>
+          <span class="p">]</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+  <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here is a single-segment multi-quadrilaterial example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;reference&quot;</span><span class="p">:</span> <span class="s2">&quot;Konca, A. O, Hjorleifsdottir, V., Song, T. A., Avouac, J., Helmberger, D., Ji, C., Sieh, K., Briggs, R., and A. Meltzner. Rupture Kinematics of the 2005 Mw 8.6 Nias-Simeulue Earthquake from the Joint Inversion of Seismic and Geodetic Data (2007). BSSA Vol. 97, No. 1A, pp. S307-S322, January 2007, doi: 10.1785/0120050632.&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;features&quot;</span><span class="p">:</span> <span class="p">[{</span>
+      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;rupture type&quot;</span><span class="p">:</span> <span class="s2">&quot;rupture extent&quot;</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;MultiPolygon&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">[</span>
+            <span class="p">[</span>
+              <span class="p">[</span><span class="mf">97.8322</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0442476</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">96.5212</span><span class="p">,</span> <span class="mf">0.897694</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">95.9014</span><span class="p">,</span> <span class="mf">2.57177</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">96.9539</span><span class="p">,</span> <span class="mf">3.18268</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">98.1601</span><span class="p">,</span> <span class="mf">1.89031</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">98.7634</span><span class="p">,</span> <span class="mf">1.09946</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">97.8322</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0442476</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+            <span class="p">]</span>
+          <span class="p">]</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+  <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here is a multi-segment example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;reference&quot;</span><span class="p">:</span> <span class="s2">&quot;Oglesby, D. D., D. S. Dreger, R. A. Harris, N. Ratchkovski, and R. Hansen (2004). Inverse kinematic and forward dynamic models of the 2002 Denali fault earthquake, Alaska, Bull. Seism. Soc. Am. 94, S214-S233.&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;features&quot;</span><span class="p">:</span> <span class="p">[{</span>
+      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;rupture type&quot;</span><span class="p">:</span> <span class="s2">&quot;rupture extent&quot;</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;MultiPolygon&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;coordinates&quot;</span><span class="p">:[</span>
+          <span class="p">[</span>
+            <span class="p">[</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">147.807</span><span class="p">,</span> <span class="mf">63.434</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">147.21</span><span class="p">,</span> <span class="mf">63.472</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">147.267</span><span class="p">,</span> <span class="mf">63.65</span><span class="p">,</span> <span class="mf">22.294</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">147.864</span><span class="p">,</span> <span class="mf">63.613</span><span class="p">,</span> <span class="mf">22.294</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">147.807</span><span class="p">,</span> <span class="mf">63.434</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">146.951</span><span class="p">,</span> <span class="mf">63.551</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">147.551</span><span class="p">,</span> <span class="mf">63.518</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">147.551</span><span class="p">,</span> <span class="mf">63.518</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">146.951</span><span class="p">,</span> <span class="mf">63.551</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">146.951</span><span class="p">,</span> <span class="mf">63.551</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">145.968</span><span class="p">,</span> <span class="mf">63.453</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">146.952</span><span class="p">,</span> <span class="mf">63.547</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">146.952</span><span class="p">,</span> <span class="mf">63.547</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">145.968</span><span class="p">,</span> <span class="mf">63.453</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">145.968</span><span class="p">,</span> <span class="mf">63.453</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">143.586</span><span class="p">,</span> <span class="mf">62.872</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">145.996</span><span class="p">,</span> <span class="mf">63.427</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">145.996</span><span class="p">,</span> <span class="mf">63.427</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">143.586</span><span class="p">,</span> <span class="mf">62.872</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">143.586</span><span class="p">,</span> <span class="mf">62.872</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">142.5</span><span class="p">,</span> <span class="mf">62.114</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">143.669</span><span class="p">,</span> <span class="mf">62.831</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">143.669</span><span class="p">,</span> <span class="mf">62.831</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">142.5</span><span class="p">,</span> <span class="mf">62.114</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">142.5</span><span class="p">,</span> <span class="mf">62.114</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+            <span class="p">]</span>
+          <span class="p">]</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+  <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="generic-amplification-factors-file-format">
+<h2>Generic Amplification Factors File Format<a class="headerlink" href="#generic-amplification-factors-file-format" title="Link to this heading">¶</a></h2>
+<p>The ShakeMap generic amplification factor facility supports the inclusion
+of linear amplifications that are not otherwise supported (by, for example,
+Vs30-based
+site amplifications), such as basin or topographic amplifications. The
+ShakeMap operator may provide one or more files that contain factors
+that will be added to the (natural logarithm) of the results returned
+by the GMPE or IPE (the results from the IPE are not logged, but the
+amplification factors are still additive). Mapped areas that extend
+beyond the boundaries of the amplification factor file are given an
+amplification factor of zero. If more than one amplification file is
+present in the <em>GenericAmpFactors</em> directory, then the system will apply
+all such files (i.e., the amplification factors will be cumulative to
+the extent that the grids overlap).</p>
+<p>The amplification factor file is a MapIO GridHDFContainer containing one
+or more Grid2D objects corresponding to the IMTs to which they apply. For
+instance, the following program creates a file <strong>Test.hdf</strong> which contains
+grids for PGA, SA(0.3), SA(1.0), and SA(3.0). The grids are derived from
+GMT <strong>.grd</strong> files residing in the local directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#! /usr/bin/env python</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">mapio.gmt</span><span class="w"> </span><span class="kn">import</span> <span class="n">GMTGrid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mapio.gridcontainer</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridHDFContainer</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">shakelib.utils.imt_string</span><span class="w"> </span><span class="kn">import</span> <span class="n">file_to_oq</span>
+
+
+<span class="n">gc</span> <span class="o">=</span> <span class="n">GridHDFContainer</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;Test.hdf&#39;</span><span class="p">)</span>
+
+<span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;PGA.grd&#39;</span><span class="p">,</span> <span class="s1">&#39;PSA0p3.grd&#39;</span><span class="p">,</span> <span class="s1">&#39;PSA1p0.grd&#39;</span><span class="p">,</span> <span class="s1">&#39;PSA3p0.grd&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">myfile</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+    <span class="n">g2d</span> <span class="o">=</span> <span class="n">GMTGrid</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">myfile</span><span class="p">)</span>
+
+    <span class="n">fbase</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">myfile</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">file_to_oq</span><span class="p">(</span><span class="n">fbase</span><span class="p">)</span>
+
+    <span class="n">gc</span><span class="o">.</span><span class="n">setGrid</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">g2d</span><span class="p">)</span>
+
+<span class="n">gc</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>All of the grids in a given GridHDFContainer file must have exactly the same
+boundaries and resolutions. The resulting HDF file should be placed in
+<em>&lt;install_dir&gt;/data/GenericAmpFactors</em> where <em>&lt;install_dir&gt;</em> is the current
+profile’s install directory (as set/reported by <strong>sm_profille</strong>).</p>
+<p>The rules for extracting and applying the amplification grids are as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If an exact match to the output IMT is found, then that grid is used.</p></li>
+<li><p>If the output IMT is ‘SA(X)’, where the period ‘X’ is between two of
+the SA periods in the amplification file, the grid that is applied
+will be the
+weighted average of the grids of the periods bracketing ‘X’. The
+weighting will be the (normalized) log difference in the periods.
+I.e., if the bracketing periods are ‘W’ and ‘Y”, then the weight
+applied to the grid corresponding to period W (‘gW’) will be
+<em>wW = (log(Y) - log(X)) / (log(Y) - log(W))</em> and the weight for the
+grid corresponding to period Y (‘gY’) will be <em>wY = 1 - wW</em>, so
+the amplification factors used will be <em>wW * gW + wY * gY</em>.</p></li>
+<li><p>If the period of the output IMT is less than the shortest period in
+the file, the grid corresponding to the shortest period will be used.</p></li>
+<li><p>If the period of the output IMT is greater than the longest period
+in the file, the grid corresponding to the longest period will be used.</p></li>
+<li><p>If the output IMT is PGA and PGA is not found in the file, it will be
+treated as SA(0.01) and the above rules will be applied.</p></li>
+<li><p>If the output IMT is PGV and PGV is not found in the file, it will be
+treated as SA(1.0) and the above rules will be applied.</p></li>
+<li><p>After the application of the above rules, if and IMT is not found, it will
+be given amplification factors of zero.</p></li>
+</ul>
+</div></blockquote>
+<p>Thus, if the output IMT is PGV, and PGV is not in the file, ShakeMap will
+search for SA(1.0) using the rules above. If no SA grids are provided, the
+resulting amplification grid will be all zeros.</p>
+<p>If the operator wishes to alter these behaviors, then additional grids should
+be included in the HDF file. For instance, if the extrapolation of the grids
+for the longest and shortest periods to longer and shorter periods is
+undesirable, the operator should include grids (e.g., of zeros) just below
+and above the shortest and longest periods, respectively. If the interpolation
+between periods is undesirable, then grids matching the output IMTs should be
+provided. Etc.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="sg_output_formats.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Output Data Formats</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="sg_queue.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Queueing Events</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Input Data Formats</a><ul>
+<li><a class="reference internal" href="#event-xml-file">Event XML File</a></li>
+<li><a class="reference internal" href="#moment-xml-file">Moment XML File</a></li>
+<li><a class="reference internal" href="#shakemap-xml-data-file">ShakeMap XML Data File</a></li>
+<li><a class="reference internal" href="#shakemap-json-data-file">ShakeMap JSON Data File</a></li>
+<li><a class="reference internal" href="#source-text-file">Source Text File</a></li>
+<li><a class="reference internal" href="#rupture-specification">Rupture Specification</a></li>
+<li><a class="reference internal" href="#rupture-geojson-file">Rupture GeoJson File</a></li>
+<li><a class="reference internal" href="#generic-amplification-factors-file-format">Generic Amplification Factors File Format</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=46f083c1"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    </body>
+</html>

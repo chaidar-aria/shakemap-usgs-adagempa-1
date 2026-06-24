@@ -1,0 +1,9 @@
+# Source: USGS NEIC Rapid Finite Fault
+# Eventid: 6000slss
+# Model created: 2026-04-01 20:07:59
+125.89 0.93 90.4
+126.30 0.79 11.9
+126.55 1.48 11.9
+126.14 1.63 90.4
+125.89 0.93 90.4
+>

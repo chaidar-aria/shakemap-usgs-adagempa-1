@@ -171,8 +171,10 @@ shakemap_repo="https://code.usgs.gov/ghsc/esi/shakemap.git"
 
 directory=""
 version=""
+keep_source=false
+source_dir=""
 
-while getopts ":v:d:e:lh" opt; do
+while getopts ":v:d:e:k:lh" opt; do
   case $opt in
     v)
       version=$OPTARG
@@ -185,20 +187,24 @@ while getopts ":v:d:e:lh" opt; do
     e)
       VENV=$OPTARG
       ;;
+    k)
+      source_dir=$OPTARG
+      keep_source=true
+      ;;
     l)
       echo "Listing most recent tags:"
       git ls-remote --tags ${shakemap_repo} | grep "v[0-9].[0-9]" | grep -v "\^" | grep -v "beta" | cut -f3 -d"/" | tail -5
       exit 0
       ;;
     h)
-      echo "Install a specific ShakeMap version from a tag (i.e., v4.4.6)"
+      echo "Install a ShakeMap version from a tag (i.e., v4.4.8). Defaults to latest tag."
       echo ""
       echo "This script will: "
       echo " - clone the specified ShakeMap tag to a temporary directory"
       echo " - install the python 'build' module"
       echo " - build a Python 'wheel' file"
       echo " - Use pip to install ShakeMap from the 'wheel'"
-      echo " - Clean up all temporary files/directories"
+      echo " - Clean up all temporary files/directories (if not -k)"
       echo ""
       echo "A log file will be written in the directory specified (defaults to user's home)"
       echo "This log file will be named shakemap_install_<version>_<YYYYMMDDHHMMSS>.log"
@@ -206,10 +212,11 @@ while getopts ":v:d:e:lh" opt; do
       echo ""
       usage_string=$(cat <<EOF
 Usage: $0
-\t[-v Specify shakemap_version (i.e., v4.4.6)]
+\t[-v Specify shakemap_version (i.e., v4.4.9); defaults to latest tag]
 \t[-d directory where log file will be written (defaults to current directory)]
 \t[-l list recent tags and exit]
 \t[-e Set conda environment (defaults to "${VENV}")]
+\t[-k <path> Specify where to keep the source directory after installation]
 EOF
 )
       echo -e "${usage_string}"
@@ -223,8 +230,13 @@ EOF
 done
 
 if [[ -z $version ]]; then
-    echo "No version input. Exiting"
-    exit 1
+    echo "No version specified, fetching latest tag..."
+    version=$(git ls-remote --tags ${shakemap_repo} | grep "v[0-9].[0-9]" | grep -v "\^" | grep -v "beta" | cut -f3 -d"/" | tail -1)
+    if [[ -z $version ]]; then
+        echo "Failed to determine latest tag. Specify a version with -v. Exiting."
+        exit 1
+    fi
+    echo "Latest version: ${version}"
 fi
 
 if [[ -z $directory ]]; then
@@ -248,22 +260,32 @@ fi
 
 # Create a temporary directory and store its path in a variable
 # The '|| exit 1' ensures the script stops if mktemp fails
-TEMPD=$(mktemp -d) || exit 1
-# TEMPD=/home/mhearne/tmp/test_bash
 
-# Make sure the temp directory gets removed on script exit (EXIT, HUP, INT, TERM signals)
-trap 'rm -rf "$TEMPD"' EXIT HUP INT TERM
+if [[ -n $source_dir ]]; then
+    TEMPD=$(dirname $source_dir)
+    echo "Using specified source directory: ${source_dir}..."
+else
+    TEMPD=$(mktemp -d) || exit 1
+fi
+
+if [ "$keep_source" = false ]; then
+    # Make sure the temp directory gets removed on script exit (EXIT, HUP, INT, TERM signals)
+    trap 'rm -rf "$TEMPD"' EXIT HUP INT TERM
+fi
 
 # --- Your script logic goes here ---
-echo "Doing work in $TEMPD (this will be deleted when script finishes or errors out)..."
+echo "Doing work in $TEMPD..."
 cd $TEMPD
 
-echo "Using git to clone the ShakeMap tag ${version}..."
-git clone -b ${version} --depth 1 ${shakemap_repo} shakemap >> ${logfile} 2>&1
-
-if [[ $? -ne 0 ]]; then
-    echo "The 'git clone' command failed. Check the input ShakeMap version against known tags."
-    exit 1
+if [[ -n $source_dir ]] && [[ -d $source_dir ]]; then
+    echo "Source directory ${source_dir} already exists, skipping clone..."
+else
+    echo "Using git to clone the ShakeMap tag ${version}..."
+    git clone -b ${version} --depth 1 ${shakemap_repo} shakemap >> ${logfile} 2>&1
+    if [[ $? -ne 0 ]]; then
+        echo "The 'git clone' command failed. Check the input ShakeMap version against known tags."
+        exit 1
+    fi
 fi
 
 # install conda if it is not found
@@ -384,6 +406,13 @@ pip install $wheelfile | tee -a ${logfile}
 
 echo "Installation complete."
 echo ""
+
+if [ "$keep_source" = true ]; then
+    actual_source="${TEMPD}/shakemap"
+    echo "Kept source directory: ${actual_source}"
+    echo ""
+fi
+
 echo "Activate the ${VENV} conda environment:"
 echo ""
 echo "If this is your first time using conda:"

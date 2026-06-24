@@ -1,0 +1,768 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Related Systems" href="ug_related_systems.html"><link rel="prev" title="ShakeMap Archives" href="ug_archives.html">
+        <link rel="prefetch" href="../_static/shakemap_icon_transparent_background.png" as="image">
+
+    <link rel="shortcut icon" href="../_static/shakemap_icon.ico"><!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>Applications of ShakeMap - ShakeMap 4.4.10.dev2+g38de50b28.d20260421 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=edb751ed" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+<div class="announcement">
+  <aside class="announcement-content">
+     
+    <a href='https://www.usgs.gov/' style='text-decoration: none'>
+        <img id="announcement_left_img" valign="middle" src="https://code.usgs.gov/ghsc/esi/shakemap/-/raw/main/doc/_static/usgs.png"/></a>
+    ShakeMap
+    <a href='https://code.usgs.gov/ghsc/esi/shakemap' style='text-decoration: none'>
+        <img id="announcement_right_img" valign="middle"
+            src="https://code.usgs.gov/ghsc/esi/shakemap/-/raw/main/doc/_static/GitLabLogo/gitlab-logo-500 cropped.png"/></a>
+ 
+  </aside>
+</div>
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">ShakeMap 4.4.10.dev2+g38de50b28.d20260421 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/shakemap_icon_transparent_background.png" alt="Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="sm4_technical_guide.html">1. Technical Guide</a><input aria-label="Toggle navigation of 1. Technical Guide" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="tg_philosophy.html">Philosophy of Estimating and Interpolating Ground Motions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tg_parameters.html">Recorded Ground-motion Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tg_processing.html">Data Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tg_select.html">Ground Motion Model Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tg_verification.html">Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="sm4_users_guide.html">2. Users Guide</a><input aria-label="Toggle navigation of 2. Users Guide" checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ug_background.html">Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_shakemap_operations.html">ShakeMap Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_choice_of_parameters.html">Discussion of Chosen Map Parameters (Intensity Measures)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_products.html">Products and Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_intensity.html">Representing Macroseismic Intensity on Maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_archives.html">ShakeMap Archives</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Applications of ShakeMap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_related_systems.html">Related Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_disclaimers.html">Disclaimers</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="sm4_software_guide.html">3. Software and Implementation Guide</a><input aria-label="Toggle navigation of 3. Software and Implementation Guide" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="sg_architecture.html">Software Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_installation.html">Installation and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_queue.html">Queueing Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_input_formats.html">Input Data Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_output_formats.html">Output Data Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_operational.html">Operational Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_operational.html#shakemap-implementation-checklist">ShakeMap Implementation Checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_operational.html#software-installation">Software Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_contributing.html">Guidelines for Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sm4_acknowledgments.html">4. Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sm4_references.html">5. References and Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sm4_glossary.html">6. Glossary</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="applications-of-shakemap">
+<span id="sec-shakemap-applications-4"></span><h1>Applications of ShakeMap<a class="headerlink" href="#applications-of-shakemap" title="Link to this heading">¶</a></h1>
+<p>The distribution of shaking from a significant earthquake, whether expressed as
+PGA, PGV, or intensity, provides responding organizations a significant
+increment of information beyond magnitude and epicenter.
+Real-time ground-shaking maps provide an immediate opportunity to assess the
+scope and impact of an event.  Thus, they can allow emergency managers and
+responders to determine what areas were likely subjected to the highest
+intensities and what the probable impacts were in those areas.  Importantly,
+ShakeMap also affords decision-makers a rapid portrayal of those areas that
+received only weak motions and are likely to be undamaged. The latter areas can
+potentially be used for mutual aid.</p>
+<p>Though initially developed primarily for emergency management, ShakeMaps have been
+shown to be highly beneficial for other user sectors. These other uses include
+improved loss estimation, public information and education through the media and
+webpages, financial decision making, and engineering and seismological
+research. Some specific examples are provided below for these use cases.</p>
+<p>As a side benefit, an intensity-based depiction of shaking hazards through
+ShakeMap (and DYFI) facilitates the adoption of the intensity scale more
+generally. Inculcating the populace to earthquake shaking using intensity scales
+(as opposed to magnitude alone) has become crucial not just for communicating
+post-earthquake shaking hazards; the color coding and utilization of intensity
+has more generally helped depict imminent and future shaking hazards. For
+example, the ShakeMap intensity color palette has been adopted for Earthquake
+Early Warning (EEW; see for example <a class="reference external" href="http://www.shakealert.org/faq/">QuakeAlert</a>) as well as for communicating future hazards
+through deterministic scenarios and with Probabilistic Seismic Hazard Maps
+(see <a class="reference internal" href="ug_archives.html#sec-scenarios-4"><span class="std std-ref">ShakeMap Scenarios</span></a>).</p>
+<section id="emergency-management-and-response">
+<h2>Emergency Management and Response<a class="headerlink" href="#emergency-management-and-response" title="Link to this heading">¶</a></h2>
+<p>The value of seismic monitoring and ShakeMap was addressed by a report by the National Research Council’s
+(NRC) ad-hoc Committee on the Economic Benefits of Improved Seismic
+Monitoring (<a class="reference internal" href="sm4_references.html#nrc2006"><span class="std std-ref">National Research Council, 20006</span></a>). In Chapter 7, “Benefits for Emergency Response and Recovery”, the
+committee refers to the Oct. 16, 1999 M7.1 Hector Mine, California earthquake (ShakeMap shown
+in <a class="reference internal" href="#hector-mine-shakemap-4"><span class="std std-numref">Fig. 2.25</span></a>).</p>
+<figure class="align-left" id="id1">
+<span id="nrc-committee-report-4"></span><a class="reference internal image-reference" href="../_images/NRC_11327-450.jpg"><img alt="NRC Report" height="337" src="../_images/NRC_11327-450.jpg" width="225" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 2.24 </span><span class="caption-text">NRC Seismic Monitoring Report</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+<div class="legend">
+<blockquote>
+<div><p><em>The very rapid availability of earthquake source data—including
+magnitude, location, depth, and fault geometry—provides basic
+orienting information for emergency responders, essential
+information for the news media and the public,
+and input data for other applications and response-relevant
+products. Maps of ground shaking intensity (ShakeMap) have many
+important applications in emergency management. Because ShakeMap is available via the
+Internet, all emergency responders at all levels of government and
+the private sector have access to the same rapidly available information. With this
+information, responders can quickly assess the scope of the emergency and
+mobilize resources accordingly. Early reconnaissance efforts can target areas known to
+have been shaken most severely, and key emergency services
+including search and rescue, emergency medical response, safety
+assessment of critical facilities, and shelter and mass care can be
+expedited based on a more rapid identification of
+incident location. Monitored information is also useful for rapidly
+assessing situations in which a large, widely felt earthquake
+occurs but causes little damage (such as the Hector Mine earthquake
+of October 16, 1999). Clearly, there are significant economic
+benefits in scaling a response to the consequences of
+an event, including no response for an earthquake that requires none.</em></p>
+</div></blockquote>
+</div>
+</figcaption>
+</figure>
+<figure class="align-left" id="id2">
+<span id="hector-mine-shakemap-4"></span><a class="reference internal image-reference" href="../_images/Hector_Mine_ShakeMap.png"><img alt="../_images/Hector_Mine_ShakeMap.png" src="../_images/Hector_Mine_ShakeMap.png" style="width: 650px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 2.25 </span><span class="caption-text">Instrumental Intensity ShakeMap for the 1999
+M7.1 Hector Mine, CA earthquake. (Map regenerated in 2020)</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Specifically in the context of disaster management and response in the
+U.S., ShakeMap has been recognized as a top priority:</p>
+<blockquote>
+<div><p><em>ShakeMap has
+become a valuable tool to assist emergency responders in identifying
+the likely extent of earthquake damage. Strong-motion data (now
+increasingly available in real-time) can be correlated with
+documentation and evaluation of the performance of the built
+environment, leading to understanding the causes of earthquake damage
+and the occurrence of good structural and non-structural performance”
+(`Western States Seismic Policy Council Policy Recommendation 14-3 &lt;www.wsspc.org/wp-content/…/PR_14-3_SeismicMonitoring_WebPub.pdf&gt;`_).</em></p>
+</div></blockquote>
+<p>Similarly, a report by the National Science and Technology Council <a class="reference external" href="www.sdr.gov">Subcommittee on Disaster Reduction*</a> (<a class="reference external" href="www.sdr.gov/docs/185820_Earthquake_FINAL.pdf">Grand Challenges for Disaster Reduction: Priority Interagency Earthquake Implementation Actions</a>) describes “Grand Challenge 1”:</p>
+<blockquote>
+<div><p><em>Provide hazard and disaster information where and when it is needed. […]
+Expand the Advanced National Seismic System to improve seismic monitoring and
+deliver rapid, robust earthquake information products; For all urban areas with
+moderate to high seismic risk, produce ShakeMaps that show the variation of
+shaking intensity within minutes after an earthquake based on near real time data
+transmission from densely spaced seismic networks.</em></p>
+</div></blockquote>
+<p>One of the earliest examples of the use of ShakeMap for emergency management and response was the
+the M7.1 Hector Mine earthquake of October 16, 1999 (see <a class="reference internal" href="#hector-mine-shakemap-4"><span class="std std-numref">Fig. 2.25</span></a>).
+This event provides an important lesson in the use of
+ShakeMap to assess the scope of an event and to determine the level of mobilization necessary.
+The Hector Mine earthquake produced ground motion that was widely felt in
+the Los Angeles basin and, at least in the immediate aftermath, required an assessment of potential impacts.
+It was rapidly apparent, based on ShakeMap, that the Hector Mine earthquake was not a disaster, and despite an
+extensive area of strong ground shaking, only a few small desert settlements were affected. Thus,
+mobilization of a response effort was limited to a small number of companies
+with infrastructure in the region and brief activations of emergency operations centers in
+San Bernardino and Riverside Counties and the California Office of Emergency Services
+(now the California Emergency Management Agency, or CalEMA).</p>
+<p>While prioritizing earthquake response and management is considered
+the primary goal of systems like ShakeMap, unnecessary response to an
+earthquake—although not as costly as inadequate or misguided response in a real
+disaster—can be avoided with proper well-constrained shaking information. Had the magnitude-7 earthquake occurred in
+urban Los Angeles or another urban area in California, ShakeMap could be
+employed to quickly identify the communities and jurisdictions requiring
+immediate response.  To help facilitate the use of ShakeMap in emergency
+response, ShakeMap is now provided to organizations with critical emergency
+response functions automatically through USGS webpages, ShakeCast, and similar
+tools.</p>
+</section>
+<section id="loss-estimation">
+<h2>Loss Estimation<a class="headerlink" href="#loss-estimation" title="Link to this heading">¶</a></h2>
+<p>The <a class="reference external" href="http://www.fema.gov/">Federal Emergency Management Agency</a> (FEMA) employs ShakeMap for
+post-earthquake damage assessments.
+USGS generates customized, formatted ESRI shapefiles for direct input into
+FEMA’s Hazards U.S. (<a class="reference external" href="http://www.fema.gov/hazus">HAZUS-MH</a> ; <a class="reference internal" href="sm4_references.html#fema2006"><span class="std std-ref">FEMA
+(2006)</span></a> loss estimation software. The customization includes specific contour intervals for
+all events, geometric-mean ground motions (as opposed to ShakeMap standard
+maximum component), and peak ground velocity in units of inches/sec rather than
+cm/s. The HAZUS-formatted ShakeMap shapefiles are made available to FEMA for scenarios and
+all significant domestic (U.S.) earthquakes
+via webpages and ArcGIS services (see <a class="reference internal" href="ug_products.html#gis-services-4"><span class="std std-ref">Web Mapping (GIS) Services</span></a>).</p>
+<p>The use of ShakeMaps as the shaking hazard input into HAZUS is a major improvement in loss-estimation accuracy
+because actual ground-motion observations are used directly to assess damage, rather than relying on simpler
+estimates based on epicenter and magnitude alone, or from predefined earthquake scenarios built into the HAZUS software.</p>
+<p>FEMA’s HAZUS loss estimates can be important for coordinating state and federal
+response efforts, including Disaster Declarations. HAZUS’s detailed impact
+reports can provide focus to the mobilization of resources and
+expedite the local, state, and federal disaster declaration process, thus
+initiating the government’s response and
+recovery machinery. ShakeMap, when overlaid with inventories of
+critical lifelines and
+facilities (e.g., hospitals, utilities, and substations), highways and
+bridges, and vulnerable structures,
+provides an important means of prioritizing response. Such response activities
+can include shelter and mass care,
+mutual aid assignments, emergency management, damage and safety assessment,
+utility and lifeline restoration,
+and emergency public information.</p>
+<figure class="align-left" id="id3">
+<a class="reference external image-reference" href="Parkfield2004ShakeMapandHAZUSLosses"><img alt="Parkfield 2004 ShakeMap and HAZUS Losses" src="../_images/parkfield_hazus.png" style="width: 650px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 2.26 </span><span class="caption-text">2004 M6.0 Parkfield, CA earthquake ShakeMap shapefiles (green polygons) and HAZUS estimated impact to selected
+infrastructure (circles) examined. Figure courtesy of D. Bausch, FEMA.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>As of 2015, the HAZUS-MH software is run interactively, not automatically, so
+qualified FEMA personnel must be on hand to initiate HAZUS calculations and post
+the results. In addition, for heavily populated areas (such as major cities in
+California), HAZUS software can take a few hours to
+compute losses. Thus, initial HAZUS-based losses are well behind initial
+ShakeMap and PAGER results, and of course they are limited to
+earthquakes in the U.S. However, the HAZUS results provide much greater detail and
+information about infrastructure than PAGER-based aggregated losses.</p>
+<p>As described in the section on Scenarios (<a class="reference internal" href="ug_archives.html#sec-shakemap-archives-4"><span class="std std-ref">ShakeMap Archives</span></a>), HAZUS-MH is the standard approach for
+delivering loss estimates for ShakeMap scenarios domestically. For real events,
+the ShakeMap-to-HAZUS handoff has been formalized with a
+liaison agreement (a Memo of Understanding, MOU) involving Doug Bausch, formerly
+of FEMA Region VIII, and David Wald at the USGS NEIC. Because ShakeMap shaking
+estimates evolve with time, and HAZUS loss estimates take time to compute, it is
+essential that direct communications between the two agencies takes place
+immediately after a serious earthquake to optimize loss
+estimates.</p>
+<p>The USGS-FEMA partnership has been activated for several domestic earthquakes
+since this system was put into place, including 2004 M6.0 Parkfield, California;
+2006 M6.0 Kiholo Bay, Hawaii; 2010 M7.2 Baja California, Mexico; 2011 M5.6
+Prague, Oklahoma; 2011 M5.8 Mineral, Virginia; the M6.0 2015 American Canyon,
+California; and several other events. The same approach has been
+tested and applied retrospectively against the 1994 M6.7 Northridge, California and 1989 M6.9
+Loma Prieta, California earthquakes, among others.</p>
+</section>
+<section id="financial-sector-decision-making">
+<h2>Financial Sector Decision-Making<a class="headerlink" href="#financial-sector-decision-making" title="Link to this heading">¶</a></h2>
+<p>Post-earthquake financial decision making has evolved considerably over the past
+decade. Insurers and reinsurers, private companies, governments, and aid
+organizations have shown increasing creativity in the utilization of
+near–real-time earthquake information for their own loss estimation, financial
+adjudication, and situational awareness. Such financial analyses can be of
+significant benefit to stakeholders, facilitating risk-transfer operations,
+fostering sensible management of risk portfolios, and assisting disaster
+responders. Ultimately, these improvements translate to benefits for the public
+and those at risk (<a class="reference internal" href="sm4_references.html#franco2015"><span class="std std-ref">Franco, 2015</span></a>).</p>
+<p>In general, there are three categories of post-earthquake financial services and
+decision making: 1) analysis of expected losses arising from an actual event
+against a portfolio of exposures; 2) the triggering of payments for parametric
+insurance products; and 3) the use of quantitative loss estimates to manage
+disaster response and aid. Business and public-sector portfolio managers can
+employ tools like ShakeCast or in-house applications to automatically retrieve
+and compute losses based on pre-assigned fragility curves. Within the
+(re)insurance sector, catastrophe (CAT) bonds and contingency loans based on
+earthquake risk models are often triggered via parametric analyses, which are
+dependent on earthquake parameters or intensity-measure (IM) estimates as well
+as their uncertainties.</p>
+<p>Anticipating potential losses and acting rapidly and
+accordingly is also of utmost importance to emergency management and disaster
+aid communities. Estimated losses constitute vital input for rapid situational
+awareness, facilitating decision-making on whether or not to commit and deploy
+resources, and to what level.</p>
+<aside class="sidebar">
+<p class="sidebar-title">USE CASE #1</p>
+<p>The Inter-American Development Bank <a class="reference external" href="http://www.iadb.org">http://www.iadb.org</a> (IADB) employs ShakeMap for objective post-earthquake assessments for within 72 hours of any significant earthquake in Latin America and the Caribbean (LACR). IADB’s Contingent Credit Facility Loans has set up disaster contingency loans for up to several hundred million USD, conditional on predefined levels of population exposed to ShakeMap intensity VI and higher. Typically, loans can be distributed when the population experiencing intensity VI or higher reaches at least 2% of the population within the coverage area. Loans are available in six LACR countries during the period of availability (J. Martinez, IADB, written comm., 2014).</p>
+</aside>
+<p>To a large extent, the advancement of post-earthquake financial instruments has
+been facilitated by the availability of rapid and accurate earthquake parameters
+and more quantitative geospatial hazard information. Commensurately, USGS
+products like ShakeMap and PAGER have evolved to further accommodate specific
+requirements of the financial sector. For instance, improved approaches for
+quantifying uncertainty can better inform loss estimates, and historical ShakeMap
+Atlas data can assist in loss-model calibration. In addition, USGS now provides
+PAGER loss estimates broken down by country to fulfill the need required in the
+CAT bond and contingency loan arena, while still remaining within the confines
+of reasonable spatial accuracy. Similarly, requests have been made by U.S. State
+governments to further compute losses at the state level, although such
+resolution is not yet warranted, particularly in areas of sparse real-time
+strong-motion instrumentation. Lastly, for many uses, the automatic retrieval
+and processing of ShakeMaps has been facilitated via GeoJSON feeds, webmapping
+servers, and the ShakeCast systems.</p>
+<p>Several types of data and information products available or under development
+that may be of benefit to the financial sector. The generation of suites of
+standardized earthquake scenarios—both domestic and internationally—is underway,
+and an update of the global Atlas of ShakeMaps has been completed (see
+<a class="reference internal" href="ug_archives.html#sec-shakemap-archives-4"><span class="std std-ref">ShakeMap Archives</span></a>).</p>
+<p>There are several continuing challenges under consideration
+and scrutiny: implementing directivity; computing and depicting spatial ground
+motion correlations; improving approaches for quantifying and conveying
+uncertainties; and creating more explicit ShakeMap policy and version-control
+documentation. <a class="reference internal" href="sm4_references.html#wald2016"><span class="std std-ref">Wald and Franco (2016)</span></a> describe how these
+advances may in turn facilitate the appearance of new and more refined financial
+instruments and insurance products.</p>
+</section>
+<section id="public-information-and-education">
+<h2>Public Information and Education<a class="headerlink" href="#public-information-and-education" title="Link to this heading">¶</a></h2>
+<p>The rapid availability of ShakeMap on the Internet, combined with the urgent
+desire for information following a significant earthquake, makes this mapping
+tool a huge potential source of public information and education. In instances
+in which an earthquake receives significant news coverage, the ShakeMap site
+and “Did You Feel It?” (DYFI) receive an enormous influx of
+visitors (<a class="reference internal" href="sm4_references.html#wald2011c"><span class="std std-ref">Wald et al., 2011</span></a>). Such opportunities are
+amplified by widespread adoption of ShakeMap into media and educational
+materials by other institutions.</p>
+<p>ShakeMap’s intensity scale is key for introducing and impressing upon the public and
+the media the importance of macroseismic intensity, rather than the continuing
+sole dependence on magnitude as the scale of reference for earthquakes. Although
+Japanese Meterological Agency (JMA) Intensity (.e.g., <a class="reference internal" href="sm4_references.html#jma1996"><span class="std std-ref">JMA, 1996</span></a>) differs slightly from its U.S. counterpart, Modified Mercalli Intensity (MMI)—JMA’s is strictly
+instrumentally-derived—it is widely used and understood in Japan (e.g.,
+<a class="reference internal" href="sm4_references.html#celsi2005"><span class="std std-ref">Celsi et al., 2005</span></a>). JMA has successfully made intensity the
+norm for communicating to the Japanese population about real-time and future
+earthquake hazards via television, smartphone, web content, annual earthquake
+drills, and the educational system. Because JMA intensity is widely understood,
+the public is be more attuned to earthquake risks than populations familiar only
+with magnitude descriptions of earthquakes (e.g., <a class="reference internal" href="sm4_references.html#celsi2005"><span class="std std-ref">Celsi et al., 2005</span></a>).</p>
+<blockquote>
+<div><p><em>Earthquake education also occurs through the media. The anchoring effect we
+report may be lessened significantly if the press consistently used the Mercalli
+scale and helped to educate the public about the scale. Research should be
+conducted to better understand if and how news organizations can successfully
+utilize the Mercalli scale in communicating earthquake information. Alternative
+formats, for example, using letters rather than Roman numerals for the
+categories, may ameliorate the confusion between magnitude and Mercalli scales.
+The experience in Japan provides support for the idea that laypeople can learn
+to use the two scales side by side. The Japanese media report both intensities
+and magnitude, with viewers maintaining a clearer understanding of the
+relationship between magnitude and intensity. In Japan, the overall magnitude
+and the intensity are both instrument numbers, with the latter being
+location-specific.</em></p>
+</div></blockquote>
+<p>The acclimatization of the public to intensity is inline with the findings of
+<a class="reference internal" href="sm4_references.html#gomberg2013"><span class="std std-ref">Gomberg and Jokobitz (2013)</span></a>:</p>
+<blockquote>
+<div><p><em>Simpler messaging and
+explanations are needed by some users,
+and this may be achieved by developing two styles of some products, one designed
+for nontechnical users and the other tailored for engineers and scientists. The
+tangible impacts of an earthquake must be conveyed more simply and succinctly,
+employing a scale useful for decision-making at the regional and local levels.</em></p>
+</div></blockquote>
+<p>Acknowledging the importance of ShakeMap as a tool for public information and
+education, considerable effort was taken to provide a range of formats
+suitable for broadcast and webpages. Initially “Media Maps”, simplified versions
+of the Instrumental Intensity maps, were packaged in a way that makes them more
+suitable for broadcast
+to low-resolution devices, such as TV monitors—roads and borders are thicker,
+fonts are
+larger, and the title and intensity scale are simplified—and a “TV guide”
+information sheet was provided to supplement the Media Maps, to allow
+easier delivery of basic earthquake information. These formats have naturally
+evolved to GIS, KML, and now interactive (zoomable) maps that allow
+customization of the basemap layers and other content. Such
+interactive maps are in favor in newsrooms and educational contexts.</p>
+<p>However, some of the static maps have made for the most widespread distribution.
+A widely used graphic (<a class="reference internal" href="#northridge-nisqually-4"><span class="std std-numref">Fig. 2.27</span></a>), for example,
+compares ShakeMap-generated intensities for the 1994 Northridge earthquake, a
+shallow crustal earthquake near Los Angeles, with the 2001 deep, intraslab
+Nisqually, WA earthquake. This figure was reprinted in numerous reports,
+textbooks, classes, reports, and briefings, including <a class="reference external" href="http://www.earthquakecountry.org/roots/shaking.html">Putting Down Roots</a> and the <a class="reference internal" href="sm4_references.html#nrc2006"><span class="std std-ref">National
+Research Council</span></a>.</p>
+<figure class="align-left" id="id4">
+<span id="northridge-nisqually-4"></span><a class="reference internal image-reference" href="../_images/Northridge_Nisqually.png"><img alt="../_images/Northridge_Nisqually.png" src="../_images/Northridge_Nisqually.png" style="width: 650px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 2.27 </span><span class="caption-text">Widely adopted graphic of comparing ShakeMaps for the 2001 M6.8 Nisqually, WA and 1994 M6.7 Northridge, CA earthquakes, showing how distance from an earthquake affects the level of shaking experienced. Even though the magnitude of the Nisqually earthquake was slightly greater than that of the Northridge earthquake, the shaking was lower on average, primarily because the fault that ruptured during the Northridge earthquake was shallower (5-20km deep) than that of the Nisqually earthquake (about 45-50km deep).</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The continued longterm education of the public to intensity continues through many TV channels and other means,
+for instance, in academic courses (e.g., <a class="reference external" href="http://web.ics.purdue.edu/~braile/edumod/eqhazard/eqhazard2.htm">Larry Braile’s undergraduate courses</a>), textbooks (e.g., <a class="reference internal" href="sm4_references.html#yeats2004"><span class="std std-ref">Yeats, 2004</span></a>
+“Living with Earthquakes in the Pacific Northwest”),
+and even <a class="reference external" href="https://en.wikipedia.org/wiki/2001_Nisqually_earthquake">Wikipedia</a>.</p>
+</section>
+<section id="emergency-preparedness">
+<h2>Emergency Preparedness<a class="headerlink" href="#emergency-preparedness" title="Link to this heading">¶</a></h2>
+<p>One of the leading tools for earthquake emergency preparedness has
+been the widespread adoption of <a class="reference external" href="http://www.shakeout.org/home.html">“ShakeOut”</a> and other earthquake drills and
+planning scenarios. In many of these cases, ShakeMap is employed both for
+developing the framework for portraying each earthquake in its
+hazard context and for computing loss estimates to examine and
+communicate its potential societal impact. The initial success of the
+Great Southern California ShakeOut (<a class="reference internal" href="sm4_references.html#jones2011"><span class="std std-ref">Jones et al. (2011</span></a>) has been built by SCEC, USGS, and others into a
+worldwide <a class="reference external" href="http://www.shakeout.org/home.html">annual exercise</a>
+(on Oct 15th of each year) involving millions of participants.</p>
+<p>On a statewide basis, exercises take place in several of the more
+tectonically active areas of the country, such as <a class="reference external" href="http://www.shakeout.org/utah/scenarios/">ShakeOuts in
+Utah</a> and the 2012
+<a class="reference external" href="http://earthweb.ess.washington.edu/gomberg/ShakeMap/ShakeMaps.html">Evergreen Earthquake Exercise ShakeMaps</a>
+in Washington State.</p>
+<p>Nationwide, FEMA’s <a class="reference external" href="http://www.fema.gov/national-exercise-program">National Level Exercises (NLEs)</a> program is
+another source for planning for complex, whole-community, large-scale disasters and emergencies.
+Here, too, NLEs often employ ShakeMap as the basis for their
+exercises. The ShakeMap-HAZUS combination was to support the <a class="reference external" href="http://www.cusec.org/plans-a-programs/multi-state-planning/156-cusec-new-madrid-seismic-zone-catastrophic-planning-project.html">New Madrid 2011 NLE</a>,
+involving an M7.7 New Madrid region mainshock and several significant aftershocks. In 2014,
+the “Capstone Exercise” NLE was a complex emergency
+preparedness exercise including the Alaska Shield 2014 exercise, sponsored by the State of Alaska to
+commemorate the 50th anniversary of the 1964 Great Alaskan Earthquake. The exercise
+also involved significant damage from earthquake shaking as well as
+tsunami, triggering impacts in the Pacific Northwest. The Department of Defense (DOD) aligned key components
+of the Capstone exercise with a connected “Ardent Sentry” table-top exercise with the
+same ShakeMap input in order for DOD to focus on defense support to civilian authorities.</p>
+<figure class="align-center" id="id5">
+<span id="caribewave-nle-4"></span><a class="reference internal image-reference" href="../_images/caribewave_onepager.png"><img alt="Caribe Wave OnePAGER" src="../_images/caribewave_onepager.png" style="width: 650px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 2.28 </span><span class="caption-text">Annual “Caribe Wave” earthquake and tsunami exercise for the Caribbean region.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Internationally, USGS participates (through the National Oceanic and Atmospheric Association, NOAA) in an annual “Caribe
+Wave” earthquake and tsunami exercise for the Caribbean region
+(<a class="reference internal" href="sm4_references.html#ioc2012"><span class="std std-ref">IOC, 2012</span></a>; see <a class="reference internal" href="#caribewave-nle-4"><span class="std std-numref">Fig. 2.28</span></a>). The USGS ShakeMap and PAGER group also work directly with the U.S.
+Agency for International Development (USAID) Office of Foreign
+Disaster Assistance (OFDA), the World Bank, and Geohazards International (GHI) (among many other agencies, countries, and NGOs) to
+develop global planning exercises and scenarios.</p>
+</section>
+<section id="earthquake-engineering-and-seismological-research">
+<h2>Earthquake Engineering and Seismological Research<a class="headerlink" href="#earthquake-engineering-and-seismological-research" title="Link to this heading">¶</a></h2>
+<p>For potentially damaging earthquakes, ShakeMap produces response spectral
+acceleration grid values for three periods (0.3, 1.0, and 3.0 sec). The
+spectral acceleration values are used for loss estimation, as
+mentioned above, yet these measures also serve many earthquake engineering analysis purposes. In a
+post-earthquake environment, information from engineering analyses of structures
+(including via ShakeCast, see below) provides a framework for post-earthquake
+occupancy, tagging, and damage inspection by civil engineers.</p>
+<p>ShakeMap products and metadata aggregate earthquake source
+information, shaking intensity measures (IMs) including both seismic and macroseismic observations, and fault geometries and station-sources distances.
+In addition to providing these data systematically for recent events,
+the same constraints are made available for numerous earthquakes, for recent events
+as well as historical events (<a class="reference internal" href="ug_archives.html#sec-shakemap-archives-4"><span class="std std-ref">ShakeMap Archives</span></a>).</p>
+<p>The aggregation of earthquake information and fault geometries—in
+conjunction with reported shaking and macroseismic data—provide the
+basis for analyses of best-estimate ground motion IMs at specific
+sites for comparison with human behavior and response by the
+natural and built environments. Here is a
+sampling of the range of studies these products motivate and facilitate:</p>
+<p><strong>Example Engineering Research and Analyses:</strong></p>
+<ul class="simple">
+<li><p>Analyses of potential damage to column/beam welds in steel
+buildings following the 1994 Northridge earthquake. <a class="reference internal" href="sm4_references.html#atc2002"><span class="std std-ref">ATC 2002</span></a>.</p></li>
+<li><p>ATC-54: Guidelines for using strong-motion data and ShakeMaps in
+Post-Earthquake Response.  <a class="reference internal" href="sm4_references.html#atc2002"><span class="std std-ref">ATC 2002</span></a>.</p></li>
+<li><p>An Empirical Model for Global Earthquake Fatality
+Estimation. <a class="reference internal" href="sm4_references.html#jaiswal2010"><span class="std std-ref">Jaiswal and Wald (2010)</span></a>.</p></li>
+<li><p>Guidelines for the Collection of Consequence Data, Global Earthquake Consequences Database Global
+Component Project. <a class="reference internal" href="sm4_references.html#pomonis2011"><span class="std std-ref">Pomonis and So (2011)</span></a>.</p></li>
+<li><p>ShakeCast Case Study on Nevada Bridges. <a class="reference internal" href="sm4_references.html#biasi2016"><span class="std std-ref">Biasi et al (2016)</span></a>.</p></li>
+</ul>
+<p><strong>Example Seismological Research and Analyses:</strong></p>
+<ul class="simple">
+<li><p>Intensity attenuation for active crustal regions. <a class="reference internal" href="sm4_references.html#allen2012"><span class="std std-ref">Allen et al, 2012</span></a>.</p></li>
+<li><p>Ground Motion to Intensity Conversion Equations (GMICEs): A Global
+Relationship and Evaluation of Regional Dependency. <a class="reference internal" href="sm4_references.html#caprio2015"><span class="std std-ref">Caprio
+et al. (2015)</span></a>.</p></li>
+<li><p>Fault extent estimation for near-real time ground shaking map
+computation purposes. <a class="reference internal" href="sm4_references.html#convertito2011"><span class="std std-ref">Convertito et al. (2011)</span></a>.</p></li>
+<li><p>Bayesian Estimations of Peak Ground Acceleration and 5% Damped
+Spectral Acceleration from Modified Mercalli Intensity Data*.
+<a class="reference internal" href="sm4_references.html#ebel2003"><span class="std std-ref">Ebel and Wald (2003)</span></a>.</p></li>
+<li><p>Regression analysis of MCS intensity and ground motion parameters
+in Italy and its application in ShakeMap. <a class="reference internal" href="sm4_references.html#faenza2010"><span class="std std-ref">Faenza and Michilini (2010)</span></a></p></li>
+<li><p>A Global Earthquake Discrimination Scheme to Optimize Ground-Motion
+Prediction Equation Selection. <a class="reference internal" href="sm4_references.html#garcia2012b"><span class="std std-ref">Garcia et al. (2012b)</span></a>.</p></li>
+</ul>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="ug_related_systems.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Related Systems</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="ug_archives.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">ShakeMap Archives</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Applications of ShakeMap</a><ul>
+<li><a class="reference internal" href="#emergency-management-and-response">Emergency Management and Response</a></li>
+<li><a class="reference internal" href="#loss-estimation">Loss Estimation</a></li>
+<li><a class="reference internal" href="#financial-sector-decision-making">Financial Sector Decision-Making</a></li>
+<li><a class="reference internal" href="#public-information-and-education">Public Information and Education</a></li>
+<li><a class="reference internal" href="#emergency-preparedness">Emergency Preparedness</a></li>
+<li><a class="reference internal" href="#earthquake-engineering-and-seismological-research">Earthquake Engineering and Seismological Research</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=46f083c1"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    </body>
+</html>

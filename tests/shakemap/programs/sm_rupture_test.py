@@ -1,17 +1,21 @@
 #!/usr/bin/env python
 
 # stdlib imports
-import os
+import json
 import subprocess
 import tempfile
+from pathlib import Path
 
 # third party imports
 import numpy as np
-from esi_utils_rupture.factory import get_rupture
-from esi_utils_rupture.origin import Origin
+from shakemap.bin.sm_rupture import read_fsp_file, read_neic
+from esi_shakelib.rupture.factory import get_rupture, rupture_from_dict
+from esi_shakelib.rupture.origin import Origin
+from esi_shakelib.rupture.quad_rupture import QuadRupture
 
-homedir = os.path.dirname(os.path.abspath(__file__))
-shakedir = os.path.abspath(os.path.join(homedir, "..", "..", ".."))
+homedir = Path(__file__).parent
+shakedir = (homedir / ".." / ".." / "..").resolve()
+datadir = shakedir / "tests" / "data" / "ruptures"
 
 # Dummy origin
 dummy = {
@@ -28,22 +32,44 @@ dummy = {
 }
 origin = Origin(dummy)
 
-program = os.path.join(shakedir, "src", "shakemap", "bin", "sm_rupture.py")
+program = shakedir / "src" / "shakemap" / "bin" / "sm_rupture.py"
+
+
+def test_read_json():
+    with open(datadir / "tohoku_rupture.json") as f:
+        rup = rupture_from_dict(json.load(f))
+    assert len(rup.getQuadrilaterals()) == 1
+
+
+def test_read_fsp():
+    rup = read_fsp_file(datadir / "s2003TOKACHkoke.fsp", origin)
+    assert isinstance(rup, QuadRupture)
+    strike_diff = (rup.getStrike() - 230) % 360
+    assert min(strike_diff, 360 - strike_diff) < 1.0
+    assert abs(rup.getDip() - 20) < 1.0
+    assert abs(rup.getLength() - 120) < 1.0
+    assert abs(rup.getWidth() - 100) < 1.0
+
+
+def test_read_neic():
+    rup = read_neic(datadir / "neic_fault.txt", origin)
+    assert isinstance(rup, QuadRupture)
+    assert len(rup.getQuadrilaterals()) == 1
 
 
 def test_rupture():
     with tempfile.TemporaryDirectory() as tmpdir:
         # Read in a fault file
-        rup1_file = os.path.join(
-            shakedir,
-            "tests",
-            "data",
-            "eventdata",
-            "northridge",
-            "current",
-            "northridge_fault.txt",
+        rup1_file = (
+            shakedir
+            / "tests"
+            / "data"
+            / "eventdata"
+            / "northridge"
+            / "current"
+            / "northridge_fault.txt"
         )
-        rup1 = get_rupture(origin, rup1_file)
+        rup1 = get_rupture(origin, str(rup1_file))
 
         # Known point is p0
         dx = 0
@@ -57,10 +83,10 @@ def test_rupture():
         strike = rup1.getStrike()
         dip = rup1.getDip()
 
-        outfile = os.path.join(tmpdir, "test.json")
+        outfile = Path(tmpdir) / "test.json"
 
         op = subprocess.Popen(
-            [program, outfile],
+            [program, outfile, "--no-plot"],
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
@@ -68,6 +94,7 @@ def test_rupture():
         )
         responses = (
             "test\n"
+            + "1\n"
             + "1\n"
             + str(px)
             + "\n"
@@ -89,7 +116,7 @@ def test_rupture():
             + "\n"
         )
         op.communicate(responses.encode("ascii"))
-        rup2 = get_rupture(origin, outfile)
+        rup2 = get_rupture(origin, str(outfile))
 
         # testing, note that some difference will occur since the original
         # points are not necessarily coplanar or even rectangular, which

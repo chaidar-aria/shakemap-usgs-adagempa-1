@@ -20,9 +20,6 @@ import textwrap
 import urllib.request
 from tempfile import mkstemp
 import re
-import time
-import urllib.error
-
 
 # shakemap imports
 from shakemap_modules.utils.config import get_data_path
@@ -42,106 +39,6 @@ def replace(file_path, pattern, subst):
     os.remove(file_path)
     # Move new file
     shutil.move(abs_path, file_path)
-
-
-def robust_download(
-    url, dest_path, *, max_retries=6, timeout=90, chunk_size=1024 * 256
-):
-    """
-    Unduh dengan resume + verifikasi ukuran. Tidak menimpa file final bila sudah lengkap.
-    """
-    # Siapkan header (User-Agent penting untuk GitHub Releases)
-    ua = "AdaGempa-ShakeMap/1.0 (+https://github.com/chaidar-aria)"
-
-    def _open(req):
-        req.add_header("User-Agent", ua)
-        return urllib.request.urlopen(req, timeout=timeout)
-
-    tmp_path = dest_path + ".part"
-
-    # HEAD untuk dapatkan Content-Length & dukungan Range
-    total_size = 0
-    accept_ranges = True
-    try:
-        head_req = urllib.request.Request(url, method="HEAD")
-        with _open(head_req) as r:
-            total_size = int(r.headers.get("Content-Length") or 0)
-            accept_ranges = "bytes" in (r.headers.get("Accept-Ranges", "").lower())
-    except Exception:
-        # Beberapa host menolak HEAD—lanjut tanpa total_size
-        total_size, accept_ranges = 0, True
-
-    # Jika file final sudah ada dan ukuran cocok, skip
-    if os.path.exists(dest_path) and (
-        total_size == 0 or os.path.getsize(dest_path) == total_size
-    ):
-        print(f"✓ Sudah ada: {dest_path}")
-        return
-
-    # Mulai dari ukuran partial (resume)
-    downloaded = os.path.getsize(tmp_path) if os.path.exists(tmp_path) else 0
-
-    attempt = 0
-    while attempt < max_retries:
-        attempt += 1
-        try:
-            headers = {}
-            if accept_ranges and downloaded > 0:
-                headers["Range"] = f"bytes={downloaded}-"
-
-            req = urllib.request.Request(url, headers=headers)
-            with _open(req) as resp:
-                status = getattr(resp, "status", None)
-                # Jika server tidak hormati Range (balik 200), reset partial
-                if status in (200, 203) and downloaded > 0:
-                    downloaded = 0
-                    open(tmp_path, "wb").close()
-
-                os.makedirs(os.path.dirname(dest_path), exist_ok=True)
-                with open(tmp_path, "ab" if downloaded > 0 else "wb") as f:
-                    while True:
-                        chunk = resp.read(chunk_size)
-                        if not chunk:
-                            break
-                        f.write(chunk)
-                        downloaded += len(chunk)
-
-                        # Progress sederhana
-                        if total_size > 0:
-                            pct = downloaded * 100.0 / total_size
-                            print(
-                                f"\rDownloading {os.path.basename(dest_path)}: {pct:5.1f}% ({downloaded}/{total_size} bytes)",
-                                end="",
-                            )
-                        else:
-                            print(
-                                f"\rDownloading {os.path.basename(dest_path)}: {downloaded} bytes",
-                                end="",
-                            )
-            print()  # newline setelah progress
-
-            # Verifikasi ukuran
-            if total_size > 0 and downloaded != total_size:
-                raise IOError(f"Ukuran tidak cocok: {downloaded} != {total_size}")
-
-            # Sukses → rename atomik
-            if os.path.exists(dest_path):
-                os.remove(dest_path)
-            os.replace(tmp_path, dest_path)
-            print(f"✓ Selesai: {dest_path}")
-            return
-
-        except (
-            urllib.error.HTTPError,
-            urllib.error.URLError,
-            TimeoutError,
-            IOError,
-        ) as e:
-            print(f"\n⚠️  Attempt {attempt}/{max_retries} gagal: {e}")
-            # Backoff sederhana
-            time.sleep(min(2**attempt, 10))
-
-    raise RuntimeError(f"Gagal mengunduh {url} setelah {max_retries} percobaan.")
 
 
 def get_parser():
@@ -425,24 +322,29 @@ def create(config, profile, accept, ppath, nogrids):
     vs30_path = os.path.join(gdata_path, "vs30")
     if not os.path.isdir(vs30_path):
         os.mkdir(vs30_path)
-
     #
     # url info
     #
-    # topo_file_url = "https://apps.usgs.gov/shakemap_geodata/topo/topo_30sec.grd"
-    # vs30_file_url = "https://apps.usgs.gov/shakemap_geodata/vs30/global_vs30.grd"
-    topo_file_url = "https://github.com/chaidar-aria/vs30-shakemap-usgs-adagempa/releases/download/v1.0.0-alpha/topo_30sec.grd"
-    vs30_file_url = "https://github.com/chaidar-aria/vs30-shakemap-usgs-adagempa/releases/download/v1.0.0/global_vs30.grd"
+    url_machine = "https://apps.usgs.gov/"
+    url_topo_dir = "shakemap_geodata/topo/"
+    url_vs30_dir = "shakemap_geodata/vs30/"
+    topo_file = "topo_30sec.grd"
+    vs30_file = "global_vs30.grd"
 
-    print("Mengunduh global Topografi dan Vs30 dari GitHub Releases. Mohon tunggu...")
-
-    topo_file_path = os.path.join(topo_path, "topo_30sec.grd")
-    robust_download(topo_file_url, topo_file_path, max_retries=6, timeout=90)
-
-    vs30_file_path = os.path.join(vs30_path, "global_vs30.grd")
-    robust_download(vs30_file_url, vs30_file_path, max_retries=6, timeout=90)
-
-    print("Unduhan selesai.")
+    print("Retrieving global topo and Vs30 files. This may take a minute...")
+    url = url_machine + url_topo_dir + topo_file
+    topo_file_path = os.path.join(topo_path, topo_file)
+    with urllib.request.urlopen(url) as response, open(
+        topo_file_path, "wb"
+    ) as out_file:
+        shutil.copyfileobj(response, out_file)
+    url = url_machine + url_vs30_dir + vs30_file
+    vs30_file_path = os.path.join(vs30_path, vs30_file)
+    with urllib.request.urlopen(url) as response, open(
+        vs30_file_path, "wb"
+    ) as out_file:
+        shutil.copyfileobj(response, out_file)
+    print("Done.")
 
     do_config = True
     if not accept:

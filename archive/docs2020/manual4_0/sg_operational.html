@@ -1,0 +1,695 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Guidelines for Contributors" href="sg_contributing.html"><link rel="prev" title="Output Data Formats" href="sg_output_formats.html">
+        <link rel="prefetch" href="../_static/shakemap_icon_transparent_background.png" as="image">
+
+    <link rel="shortcut icon" href="../_static/shakemap_icon.ico"><!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>Operational Considerations - ShakeMap 4.4.10.dev2+g38de50b28.d20260421 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=edb751ed" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+<div class="announcement">
+  <aside class="announcement-content">
+     
+    <a href='https://www.usgs.gov/' style='text-decoration: none'>
+        <img id="announcement_left_img" valign="middle" src="https://code.usgs.gov/ghsc/esi/shakemap/-/raw/main/doc/_static/usgs.png"/></a>
+    ShakeMap
+    <a href='https://code.usgs.gov/ghsc/esi/shakemap' style='text-decoration: none'>
+        <img id="announcement_right_img" valign="middle"
+            src="https://code.usgs.gov/ghsc/esi/shakemap/-/raw/main/doc/_static/GitLabLogo/gitlab-logo-500 cropped.png"/></a>
+ 
+  </aside>
+</div>
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">ShakeMap 4.4.10.dev2+g38de50b28.d20260421 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/shakemap_icon_transparent_background.png" alt="Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="sm4_technical_guide.html">1. Technical Guide</a><input aria-label="Toggle navigation of 1. Technical Guide" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="tg_philosophy.html">Philosophy of Estimating and Interpolating Ground Motions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tg_parameters.html">Recorded Ground-motion Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tg_processing.html">Data Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tg_select.html">Ground Motion Model Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tg_verification.html">Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="sm4_users_guide.html">2. Users Guide</a><input aria-label="Toggle navigation of 2. Users Guide" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="ug_background.html">Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_shakemap_operations.html">ShakeMap Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_choice_of_parameters.html">Discussion of Chosen Map Parameters (Intensity Measures)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_products.html">Products and Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_intensity.html">Representing Macroseismic Intensity on Maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_archives.html">ShakeMap Archives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_applications.html">Applications of ShakeMap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_related_systems.html">Related Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_disclaimers.html">Disclaimers</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="sm4_software_guide.html">3. Software and Implementation Guide</a><input aria-label="Toggle navigation of 3. Software and Implementation Guide" checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sg_architecture.html">Software Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_installation.html">Installation and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_queue.html">Queueing Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_input_formats.html">Input Data Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_output_formats.html">Output Data Formats</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Operational Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shakemap-implementation-checklist">ShakeMap Implementation Checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#software-installation">Software Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_contributing.html">Guidelines for Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sm4_acknowledgments.html">4. Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sm4_references.html">5. References and Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sm4_glossary.html">6. Glossary</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="operational-considerations">
+<span id="operational-considerations-4"></span><h1>Operational Considerations<a class="headerlink" href="#operational-considerations" title="Link to this heading">¶</a></h1>
+<p>Installing and operating a ShakeMap system is a non-trivial endeavor. While the software
+can be easily obtained, and installed and configured with a few hours work, there are a
+great many issues that need to be addressed when an organization considers deploying a
+ShakeMap system. In this section, we will discuss a number of these issues.</p>
+<section id="seismic-network">
+<h2>Seismic Network<a class="headerlink" href="#seismic-network" title="Link to this heading">¶</a></h2>
+<p>The single most important prerequisite for operating a ShakeMap system is the existence
+of a seismic network capable of determining the location and magnitude of significant
+earthquakes within minutes of their occurrence. This network must also produce
+parametric data for ShakeMap within minutes of the earthquake. The parametric data
+should come from free-field strong motion sensors with real-time or near–real-time
+telemetry, and minimally consist of the horizontal components of Peak Ground
+Acceleration (PGA) and Peak Ground Velocity (PGV), as well as (ideally) 5% damped pseudo-
+spectral acceleration (PSA) at 0.3, 1.0, and 3.0 sec periods.</p>
+<p>In the absence of such a network, there is little reason to operate ShakeMap
+locally. The
+USGS operates a ShakeMap system that produces maps for significant global
+earthquakes within a few minutes of their occurrence, and incorporates any
+available data
+from the Global Seismic Network (GSN), “Did You Feel It?” (DYFI), and any
+other parametric data to which
+we have access. These maps are immediately delivered to the PAGER system and
+ShakeCast. It would be far simpler in many cases to obtain the
+ShakeMap products from the USGS (through the website or ShakeCast) and use them for
+local or regional response and recovery efforts, perhaps even hosting them on local
+servers, than to attempt to duplicate our existing system.</p>
+<p>Even where a seismic network is operational, it may be preferable to work with the
+USGS to produce ShakeMaps. As the following sections will illustrate, running a
+ShakeMap system is a considerable operational undertaking, and in many instances it will
+strain the resources of local or regional networks. The USGS operates a fully-staffed,
+24/7 operations center for global earthquakes and produces ShakeMaps on a daily basis.
+If a regional network’s parametric data can be made available to the USGS, the USGS’s
+global ShakeMap system will include that data in the processing, and finished ShakeMap
+products can be delivered via ShakeCast for local consumption. Please contact us if you
+are interested in this kind of arrangement.</p>
+</section>
+<section id="seismic-stations-and-parametric-data">
+<h2>Seismic Stations and Parametric Data<a class="headerlink" href="#seismic-stations-and-parametric-data" title="Link to this heading">¶</a></h2>
+<p>As mentioned above, seismic waveform or parametric data must be communicated to the
+processing center in real-time or near—real–time. The sensors must be “free field” (i.e., not
+located in, or adjacent to, large structures) and installed in accordance with modern standard
+practices. Strong-motion instruments are preferred for ShakeMap, as broadband
+instruments typically clip when ground motions reach the level of interest to ShakeMap.
+Co-located strong-motion and broadband instruments can, however, increase the dynamic
+range of a station and its overall usefulness, but the network operator is responsible for
+specifying the crossover from broadband to strong motion, and ShakeMap should be
+presented only with the amplitudes from the favored instrument. Off-scale, clipped,
+below-noise, or otherwise unreliable data must be flagged or omitted from the ShakeMap
+input files. Horizontal components are mandatory—ShakeMap does not use vertical
+components.</p>
+<p>At a minimum, the network must produce PGA and PGV for the ShakeMap stations, but
+PSA (at 0.3, 1.0, and 3.0 sec) is also desirable. The algorithms
+used to compute the parametric data should be verified against known standards.
+ShakeMap can be quite helpful in
+highlighting grossly mis-calibrated stations, but it is best to find these (and more subtle)
+errors before a large earthquake strikes.</p>
+<p>Intensity data from the USGS’s DYFI system (or an equivalent
+regional internet intensity system) is acceptable as input to ShakeMap; however, care
+should be exercised with international DYFI data, as it is often aggregated by city and
+therefore may be too coarse-grained for large-scale maps.</p>
+</section>
+<section id="triggering-shakemap">
+<h2>Triggering ShakeMap<a class="headerlink" href="#triggering-shakemap" title="Link to this heading">¶</a></h2>
+<p>The operator must give careful consideration to the way ShakeMap will be triggered.
+Unless an operator is constantly standing by to run ShakeMap, the system must be
+automatic to be useful. The operator must select the boundaries of the region ShakeMap
+will cover and the minimum earthquake magnitude that will trigger a run. These choices
+will be influenced by the reliability of the network’s earthquake location and magnitude
+data over the region in question. The operator must also consider that a large earthquake may
+occur outside their region of responsibility, but have effects inside their region.</p>
+<p>The ShakeMap software is distributed with a program for responding to event triggers
+and queuing events to be processed, but this may not be suitable for all regions.
+A repository of code for triggering processing and retrieving data specific
+to AQMS systems is available While this software can serve as a guide, users
+of other systems (e.g., Antelope,
+Earthworm, SeisComP3) will need to develop their own triggering systems.</p>
+<p>Once triggered, ShakeMap will expect to find event and parametric data files in the
+event’s input directory. Whether the amplitudes are retrieved from a database or stored in
+files, it is the operator’s responsibility to provide ShakeMap with properly formatted
+files. Again, operators should anticipate that some coding may be necessary.</p>
+</section>
+<section id="system-configuration">
+<h2>System Configuration<a class="headerlink" href="#system-configuration" title="Link to this heading">¶</a></h2>
+<p>While it is relatively easy to install and run the ShakeMap software, a great deal of
+consideration is needed to properly configure the system for a particular region.
+ShakeMap presents the operator with a large number of configuration options, and these
+options will directly affect the accuracy and reliability of the products. The
+operator must select the proper GMPE or GMPEs for the region, and specify under which
+conditions they will be used. An appropriate Ground-Motion–Intensity Conversion
+Equation (GMICE) must likewise be chosen. The operator may also elect to use an Intensity
+Prediction Equation (IPE) or to use the default virtual IPE. For best results, the operator
+will need to provide a Vs30 grid, and while the
+<a class="reference external" href="http://earthquake.usgs.gov/hazards/apps/vs30/">USGS’s Vs30 server</a> can supply such a
+grid based on topographic slope, a grid based on regional geology is preferable.
+This is just a partial list of configuration choices. There are numerous other
+configurable parameters, all of which must be carefully chosen.</p>
+<p>For further information on ShakeMap configuration, see <a class="reference internal" href="sg_installation.html#sec-installation-4"><span class="std std-ref">Installation and Configuration</span></a> and the
+ShakeMap configuration files themselves.</p>
+</section>
+<section id="operations">
+<h2>Operations<a class="headerlink" href="#operations" title="Link to this heading">¶</a></h2>
+<p>Once an organization begins producing and distributing ShakeMaps, end users will begin
+to depend upon them and develop systems that incorporate ShakeMap products into their
+response and recovery operations. This means that it essentially becomes mandatory to
+produce ShakeMaps following significant earthquakes, and failure to do so is
+extremely conspicuous. A robust ShakeMap operation requires the 24/7 availability of
+operational personnel. If the facility is not continuously manned, on-call staff must be
+designated, and those staff must have the ability to access and operate the ShakeMap
+system remotely. Significant earthquakes almost always require some manual
+intervention (changing map scale, re-centering, addition of finite fault,
+inclusion/exclusion of data, etc.), and experienced personnel are required to evaluate the
+situation and perform the necessary tasks.</p>
+<p>There are additional, more routine, operational considerations. An experienced
+seismologist should routinely review all of the ShakeMaps produced by the system and
+take action to correct any deficiencies. A network seismologist should also review the
+inputs and outputs of ShakeMap to insure that all stations are producing appropriate data.
+A ShakeMap operator should routinely review all ShakeMap processes, logs, databases,
+and outputs to insure the system is operating as expected.</p>
+<p>The ShakeMap software is usually updated a few times a year. These updates contain
+important bug fixes, new functionality, new products, and general improvements. An
+operator must review the change logs, decide when to apply the updates, and test the
+updated software before it is put into production mode. Occasionally it may be desirable
+to rerun earlier events or scenarios to take advantage of the capabilities of the new code.</p>
+<p>Hardware and software systems will need to be monitored and maintained for around-the-
+clock availability. This includes not just the seismic network and ShakeMap systems, but
+also web servers and other network hardware and software required for delivering
+products to end users. The personnel responsible for these systems must be on-call and
+able to access the necessary systems remotely. Automatic monitoring of mission-critical
+hardware and software is strongly encouraged. These systems should also have several
+hours of backup power in case of an outage. Periodic outage tests should be
+conducted to ensure that all necessary systems remain operational.</p>
+<p>As mentioned above, users can be expected to make use of ShakeMaps in a variety of
+ways. However, many organizations that could make use of ShakeMap products are
+unaware of ShakeMap and the ways it could serve their earthquake response and
+recovery needs. We have found that a sustained outreach effort is necessary to maximize
+the adoption of ShakeMap and, thus, its value to society. Potential end users include
+public utilities, government and private transportation companies, police and fire
+departments, regional and national emergency response organizations, private companies
+with distributed facilities (e.g., banks, chain stores, telecoms), insurance companies,
+investment houses, and many others. Not only can ShakeMap-improved response efforts
+benefit post-earthquake recovery, these organizations can provide much-needed support
+for network and ShakeMap operations. It is highly recommended that regional networks
+considering the implementation of ShakeMap develop a detailed outreach plan.</p>
+</section>
+<section id="scenarios">
+<h2>Scenarios<a class="headerlink" href="#scenarios" title="Link to this heading">¶</a></h2>
+<p>One important use of ShakeMap is the generation of earthquake scenarios. Scenarios are
+predictive maps of the potential shaking resulting from hypothetical future (or past) earthquakes.
+Scenarios can be used for planning exercises, public information, or research. Some
+users may request specific scenarios, but it is generally worthwhile to develop a suite of
+scenarios to cover the likely earthquake hazards of a region. At the USGS, we have begun
+using disaggregated hazard maps as the basis for our nationwide scenario project. In other
+words, we separate out the individual earthquakes (and causative faults) that together
+comprise the hazard in a probabilistic hazard map. The disaggregated maps represent the
+best scientific consensus of the probable earthquakes in a region, and should be sufficient
+for most uses. Requests for custom scenarios should be carefully evaluated. The
+earthquakes represented should be credible in terms of both the causative fault and the
+magnitude. In most cases, one of the disaggregated hazard scenarios should suffice.</p>
+</section>
+<section id="backup">
+<h2>Backup<a class="headerlink" href="#backup" title="Link to this heading">¶</a></h2>
+<p>Because of the importance of ShakeMap, it is advisable to run redundant systems. Most
+ShakeMap operations have a primary and backup machine. The backup machine runs
+events as if it were the primary, except it does not transfer its products to the web or other
+destinations. If the primary server fails, the backup can be switched over to primary
+merely by changing the transfer configuration. This arrangement is also useful when
+software updates are available. The update can be applied and tested on the backup
+system. Once it is deemed to be operating correctly, it can be made primary, and the
+primary server can be updated.</p>
+<p>Since most seismic networks are operated from earthquake-prone regions, there is also
+the potential that the entire facility will be taken offline. For this reason, it is desirable to
+have a backup system operating in a remote location, preferably many kilometers away.</p>
+<p>As we have mentioned elsewhere, the USGS makes ShakeMaps for global earthquakes
+and provides backup to U.S. regional networks. If you would like to discuss remote
+backup for your ShakeMap system, please contact us.</p>
+</section>
+</section>
+<section id="shakemap-implementation-checklist">
+<h1>ShakeMap Implementation Checklist<a class="headerlink" href="#shakemap-implementation-checklist" title="Link to this heading">¶</a></h1>
+<p>The checklist below is based on the one we use when discussing ShakeMap operations with active or
+potential producers within the USGS’s Advanced National Seismic System (ANSS).
+While some of the issues are ANSS-specific, there may be analogous considerations for
+other regional or national networks.</p>
+<ol class="arabic simple">
+<li><p><strong>Triggering</strong></p>
+<ol class="upperalpha simple">
+<li><p>Automatic Triggering System.  How is ShakeMap triggered and how does it
+access or receive parametric data?  How is robustness of this approach
+achieved?</p></li>
+<li><p>Location &amp; Magnitude Reliability.  Are there limitations to location and
+magnitude determination by the regional network that would adversely affect
+automatic ShakeMap products?</p></li>
+<li><p>Regional Coverage.  What are the boundaries of the area within which the
+local network will generate ShakeMaps?</p></li>
+<li><p>Alarm Region.  For events outside ShakeMap boundaries, is a ShakeMap run
+initiated?  Under what conditions?</p></li>
+<li><p>ShakeMap ID.  Does the naming of ShakeMap ID follow the ANSS
+convention?  If not, can they be easily associated with the authoritative ID?</p></li>
+</ol>
+</li>
+<li><p><strong>Station Coverage and Parametric Data</strong></p>
+<ol class="upperalpha simple">
+<li><p>Real-time or near–real-time data flow.  What are the types and distribution of
+stations contributing to ShakeMap? Are all stations “ShakeMap-quality”?</p></li>
+<li><p>Parametric Data.  How are the parametric data computed? (Five parameters:
+PGA, PGV, and three periods of PSA.)</p></li>
+<li><p>Are parametric data imported from other sources (NSMP-triggered stations,
+state or commercial agencies, neighboring networks, etc.)? How are these
+integrated with the ShakeMap input?</p></li>
+<li><p>Are “Did You Feel It?” data used as input?</p></li>
+<li><p>Co-location of different sensor types, priorities, and preventing redundant
+input data. How are co-located instruments resolved by the network to
+produce only a single (best) set of amplitudes for ShakeMap?</p></li>
+</ol>
+</li>
+<li><p><strong>System Specifications</strong></p>
+<ol class="upperalpha simple">
+<li><p>Model parameters. Review the parameters in <em>model.conf</em>. How were they
+determined?</p>
+<ol class="loweralpha simple">
+<li><p>GMPEs. Which Ground-Motion Prediction Equations are used, and
+under what conditions?</p></li>
+<li><p>IPEs. Which Intensity Prediction Equations are used, and under what
+circumstances?</p></li>
+<li><p>GMICEs. Which Ground-Motion–Intensity Conversion Equations are
+used?</p></li>
+<li><p>Site Amplification. How are Vs30 values provided to the system,
+and are they appropriate for the full extent of the region covered
+by ShakeMap?</p></li>
+<li><p>Other parameters. Grid spacing, map area, outlier levels, bias
+parameters. Have all parameters been evaluated for optimal
+performance?</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><strong>Operations</strong></p>
+<ol class="upperalpha simple">
+<li><p>Which version of ShakeMap is operational? Who is responsible for updating
+the software when updates are released? When and how are the updates performed?</p></li>
+<li><p>Who is responsible for routine scientific review of ShakeMaps produced by
+the network? Do these people receive alarms when ShakeMaps are produced?</p></li>
+<li><p>Who is responsible for routine operational review of the ShakeMap system
+(checking logs, process and database monitoring, etc.)? When are reviews
+performed?</p></li>
+<li><p>Reprocessing. Under what circumstances are events reprocessed (new data,
+change in source parameters, etc.)? What about in the longer term (ShakeMap
+software updates, changes in operational parameters)?</p></li>
+<li><p>Finite faults. For larger earthquakes, who is responsible for producing a finite
+fault model for inclusion in ShakeMap? What procedures are in place for
+assuring this is done?</p></li>
+<li><p>Aftershock exclusion. How will you change the triggering threshold
+immediately after a major earthquake in your region?</p></li>
+<li><p>Version history. Under what circumstances are maps (and their input data)
+preserved using ShakeMap versioning?</p></li>
+<li><p>Have there been any local changes to the ShakeMap software that will hinder
+upgrades? Can these customizations be incorporated into the ShakeMap
+distribution for easier upgrades? If not, how can they be structured to
+accommodate easy upgrades of ShakeMap?</p></li>
+<li><p>What is the hardware for ShakeMap processing and for local web service?</p></li>
+<li><p>How is hardware redundancy achieved?</p></li>
+<li><p>Are the hardware and software systems automatically monitored? Do they
+generate alerts when problems are detected?</p></li>
+</ol>
+</li>
+<li><p><strong>Product Distribution and Uniformity</strong></p>
+<ol class="upperalpha simple">
+<li><p>Are products delivered to Earthquake Program Web Servers via PDL?</p></li>
+<li><p>Are local webpages produced? Where do they reside? How is ShakeMap
+transferred? Are redundant web servers and 24/7 support available?</p></li>
+<li><p>Are regional ShakeMap webpages customized to reflect regional
+configurations and implementation specifics?</p></li>
+</ol>
+</li>
+<li><p><strong>ANSS Coordination</strong></p>
+<ol class="upperalpha simple">
+<li><p>Provide Software/Feedback to ANSS.  To benefit current operators and to
+ensure compatibility and ease of installing new ShakeMap software releases,
+changes to ShakeMap software (above and beyond configuration changes)
+should be provided to Bruce Worden for review, standardization, and
+inclusion in new releases.</p></li>
+<li><p>Provide contacts, their background, and roles in implementation, coordination,
+and operations.</p></li>
+</ol>
+</li>
+<li><p>User Coordination:
+List significant users and outline any outreach efforts or plans. It is very useful to
+have a feeling for which users will rely on ShakeMap in each region, as well as to
+coordinate efforts for users of ShakeMaps for multiple regions (e.g., FEMA,
+DHS, Military).</p></li>
+<li><p><strong>Scenarios and Archives</strong></p>
+<ol class="upperalpha simple">
+<li><p>Scenario earthquakes should be made to be consistent with USGS National
+Hazard Maps, both with attenuation relations and in source parameterization.
+Coordination with the National Earthquake Information Center (NEIC) is essential.</p></li>
+<li><p>Is a copy of scenarios also available on the USGS web site?</p></li>
+<li><p>How and when will scenarios be reprocessed?</p></li>
+<li><p>Archive “final” ShakeMaps for significant events.  Many users want
+ShakeMaps for significant events “frozen in time”. Once a ShakeMap gets
+used as a reference for damage-loss modelers, insurance investigators, and
+researchers, there needs to be an archival version of these events. Once all the
+available ground-motion data have been collected and included in ShakeMap,
+that Version of the map needs to be kept available even if additional updates
+are made. (This process has not yet been fully vetted.)</p></li>
+</ol>
+</li>
+<li><p><strong>Backup Strategy</strong></p>
+<ol class="upperalpha simple">
+<li><p>If the primary system fails, what provisions exist for a backup system or
+another network to take over ShakeMap operations? Is this backup automatic
+or manual?</p></li>
+<li><p>If the entire facility goes offline, is there an off-site backup?</p></li>
+<li><p>Are waveform or parametric data transmitted to NEIC for national-level
+backup?</p></li>
+</ol>
+</li>
+<li><p><strong>Feedback</strong>:
+Do you have any recommendations for further support, software, features, etc.?</p></li>
+</ol>
+</section>
+<section id="software-installation">
+<h1>Software Installation<a class="headerlink" href="#software-installation" title="Link to this heading">¶</a></h1>
+<p>To install the ShakeMap software, the
+<a class="reference external" href="https://code.usgs.gov/ghsc/esi/shakemap/-/wikis/home">ShakeMap Wiki</a>
+provides the easiest and most basic approach. Following the process described
+therein and running some practice events should be the first steps for
+anyone wishing to deploy ShakeMap. From there, careful study of the
+<a class="reference internal" href="sm4_technical_guide.html#technical-guide-4"><span class="std std-ref">Technical Guide</span></a> is strongly recommended. Reading the
+<a class="reference internal" href="sm4_users_guide.html#users-guide-4"><span class="std std-ref">User’s Guide</span></a> will be necessary to fully understand the ShakeMap
+system and the products it produces.</p>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="sg_contributing.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Guidelines for Contributors</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="sg_output_formats.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Output Data Formats</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Operational Considerations</a><ul>
+<li><a class="reference internal" href="#seismic-network">Seismic Network</a></li>
+<li><a class="reference internal" href="#seismic-stations-and-parametric-data">Seismic Stations and Parametric Data</a></li>
+<li><a class="reference internal" href="#triggering-shakemap">Triggering ShakeMap</a></li>
+<li><a class="reference internal" href="#system-configuration">System Configuration</a></li>
+<li><a class="reference internal" href="#operations">Operations</a></li>
+<li><a class="reference internal" href="#scenarios">Scenarios</a></li>
+<li><a class="reference internal" href="#backup">Backup</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#shakemap-implementation-checklist">ShakeMap Implementation Checklist</a></li>
+<li><a class="reference internal" href="#software-installation">Software Installation</a></li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=46f083c1"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    </body>
+</html>

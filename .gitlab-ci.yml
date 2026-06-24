@@ -5,6 +5,8 @@ default:
     - build
 
   before_script:
+    - nproc
+    - free -h
     - python --version
     - export PATH="/home/usgs-user/.local/bin:$PATH"
     - mini_conda_url=https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
@@ -52,7 +54,7 @@ stages:
 .build_config:
   script:
     - conda init bash
-    - bash install.sh -d
+    - bash scripts/install_shakemap_dev.sh -d
     - conda activate shakemap
     - echo "***********************************************"
     - conda list
@@ -66,8 +68,10 @@ run tests and coverage:
     # Run build configuration script
     - !reference [.build_config, script]
     # Continue job script
-    - pytest -x --cov=shakemap --cov-report xml:coverage.xml --cov-report term --junitxml junit.xml
-    # - coverage xml
+    - python -m coverage run -m pytest -x --junitxml junit.xml
+    - python -m coverage combine
+    - python -m coverage xml -o coverage.xml
+    - python -m coverage report
 
   # Define test coverage and reporting
   coverage: '/(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/'
@@ -102,10 +106,12 @@ pages:
   script:
     # Run build configuration script
     - !reference [.build_config, script]
+    - sm_profile -c default -n default
     - cd doc
     - pip install -r requirements.txt
     - cd ..
     - mkdir $HOME/.shakemap
     - mv doc/skeleton_profile $HOME/.shakemap/profiles.conf
     - sphinx-build doc/ public
+    - cp -r archive/docs2020 public/docs2020
   stage: docs

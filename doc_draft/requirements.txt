@@ -1,0 +1,7 @@
+sphinx
+pydata-sphinx-theme
+myst-nb
+sphinx-copybutton
+sphinx-inline-tabs
+sphinxcontrib-programoutput
+furo

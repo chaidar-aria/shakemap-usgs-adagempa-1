@@ -1,5 +1,42 @@
 ## main
 
+    - Add product-version argument that can override version number
+    - Updated shakemap-modules dependency to 1.1.18
+    - Updated rupture imports to use esi-shakelib
+    - Added integration test script and reference json
+    - Added instructions for running integration test for new release
+    - Updated sm_create so that the "-e" option sets event type to be SCENARIO by default.
+    - Update shakemap-module dependency to 1.1.18 (product version argument)
+    - Update sm-rupture to plot rupture and support SRCMOD, vectorized input, and rupture.json
+    - Archived 2020 manual so we can start revising a new version of the docs
+    - Updated user install script to default to latest tagged version
+    - Archived the html of the current docs to archive/docs2020
+    - Archived the source for the current docs to archive/doc_source2020
+    - Renamed the directory holding the ShakeMap3.5 doc source from archive/doc_source to archive/doc_source3.5/
+    - Create new doc_draft directory for developing new documentation. 
+
+## v4.4.9 / 2025-03-10
+    - Update to shakemap-modules 1.1.16
+    - Regenerated conda-lock file
+    - Updated release instructions for creating the conda lock file
+
+## v4.4.8 / 2025-03-02
+    - Update install scripts to be more compatible with AWS ImageBuilder install
+      - No longer installing ObsPy from main repo
+      - Added an option to keep the source folder so that pytests can be run
+
+## v4.4.7 / 2025-02-25
+    - Update to shakemap-modules 1.1.15
+    - Moved install scripts into scripts folder. 
+      - There is a user install script (conda-lock) and a development install script (same as before).
+      - ObsPy will install from git master branch to avoid setuptools error
+    - Add conda-lock support for pinning environmental dependencies
+    - Fix broken links in docs (mostly to github).
+    - Pin scipy version to >=1.16.0 and <1.17.0 to resolve Amazon Machine Image build issue.
+
+## v4.4.6 / 2025-08-14
+    - Update to shakemap-modules 1.1.11.
+
 ## v4.4.5 / 2025-08-01
     - Update to shakemap-modules 1.1.10.
     - Set to use numpy>=1.26.

@@ -19,6 +19,8 @@ The "quick start" guide, including installation instructions, is included in the
 The ShakeMap documentation is located here:
  - https://ghsc.code-pages.usgs.gov/esi/shakemap/
 
+The archived 2020 version of the manual (Worden et al., 2020) is located here:
+ - https://ghsc.code-pages.usgs.gov/esi/shakemap/docs2020
 
 # Mirrors
 

@@ -1,0 +1,8 @@
+sphinx>3.0.0
+requests>=2
+furo
+setuptools_scm
+sphinx-argparse
+sphinx-copybutton
+sphinx-inline-tabs
+sphinxcontrib-programoutput

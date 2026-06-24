@@ -1,0 +1,827 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="4. Acknowledgments" href="sm4_acknowledgments.html"><link rel="prev" title="Operational Considerations" href="sg_operational.html">
+        <link rel="prefetch" href="../_static/shakemap_icon_transparent_background.png" as="image">
+
+    <link rel="shortcut icon" href="../_static/shakemap_icon.ico"><!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>Guidelines for Contributors - ShakeMap 4.4.10.dev2+g38de50b28.d20260421 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=edb751ed" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+<div class="announcement">
+  <aside class="announcement-content">
+     
+    <a href='https://www.usgs.gov/' style='text-decoration: none'>
+        <img id="announcement_left_img" valign="middle" src="https://code.usgs.gov/ghsc/esi/shakemap/-/raw/main/doc/_static/usgs.png"/></a>
+    ShakeMap
+    <a href='https://code.usgs.gov/ghsc/esi/shakemap' style='text-decoration: none'>
+        <img id="announcement_right_img" valign="middle"
+            src="https://code.usgs.gov/ghsc/esi/shakemap/-/raw/main/doc/_static/GitLabLogo/gitlab-logo-500 cropped.png"/></a>
+ 
+  </aside>
+</div>
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">ShakeMap 4.4.10.dev2+g38de50b28.d20260421 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/shakemap_icon_transparent_background.png" alt="Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="sm4_technical_guide.html">1. Technical Guide</a><input aria-label="Toggle navigation of 1. Technical Guide" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="tg_philosophy.html">Philosophy of Estimating and Interpolating Ground Motions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tg_parameters.html">Recorded Ground-motion Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tg_processing.html">Data Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tg_select.html">Ground Motion Model Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tg_verification.html">Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="sm4_users_guide.html">2. Users Guide</a><input aria-label="Toggle navigation of 2. Users Guide" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="ug_background.html">Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_shakemap_operations.html">ShakeMap Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_choice_of_parameters.html">Discussion of Chosen Map Parameters (Intensity Measures)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_products.html">Products and Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_intensity.html">Representing Macroseismic Intensity on Maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_archives.html">ShakeMap Archives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_applications.html">Applications of ShakeMap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_related_systems.html">Related Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ug_disclaimers.html">Disclaimers</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="sm4_software_guide.html">3. Software and Implementation Guide</a><input aria-label="Toggle navigation of 3. Software and Implementation Guide" checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sg_architecture.html">Software Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_installation.html">Installation and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_queue.html">Queueing Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_input_formats.html">Input Data Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_output_formats.html">Output Data Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_operational.html">Operational Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_operational.html#shakemap-implementation-checklist">ShakeMap Implementation Checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sg_operational.html#software-installation">Software Installation</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Guidelines for Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sm4_acknowledgments.html">4. Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sm4_references.html">5. References and Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sm4_glossary.html">6. Glossary</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="guidelines-for-contributors">
+<span id="sec-contributing-4"></span><h1>Guidelines for Contributors<a class="headerlink" href="#guidelines-for-contributors" title="Link to this heading">¶</a></h1>
+<p>We encourage contributions to the ShakeMap project. Before
+you begin, however, we recommend you contact us (either
+directly or, preferrably, through the <em>issues</em> feature on
+GitHub) to discuss your plans so that we can try to
+coordinate activities among contributors and ourselves.</p>
+<p>See our LICENSE.md file for details of ShakeMap licensing.
+Any contributions will fall under the terms of that license,
+and by submitting a pull request you are agreeing to
+place your code under our license.
+In particular, it is a public domain license, which means
+you effectively give up all rights to your contributions,
+including to someone who uses or sells the code commercially.</p>
+<p>Unit tests are required for all contributed code, and must
+provide significant coverage (&gt;90%). All existing tests must
+pass or the PR will be rejected.</p>
+<p>Documentation is also required. In addition to being
+well-commented, make sure your code has
+<a class="reference external" href="http://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html">Google-style docstrings</a>
+describe functions and all inputs,
+outputs, and possible exceptions raised. See the section
+“Coding Style” below for more.</p>
+<p>There is a program, <em>makedocs.py</em> at the top level of the
+repository. It will rebuild the documentation. It will also
+change or create many files. Make sure to run the program
+(and review the documentation) before submitting your pull
+request.</p>
+<p>See below for details on:</p>
+<ul class="simple">
+<li><p>Coding style</p></li>
+<li><p>Development workflow</p></li>
+<li><p>Coremods</p></li>
+</ul>
+<section id="coding-style">
+<h2>Coding Style<a class="headerlink" href="#coding-style" title="Link to this heading">¶</a></h2>
+<p>We now use the <a class="reference external" href="https://github.com/psf/black">Black Code Formatter</a> for
+all code formatting. You will be expected to run your code through Black
+before submitting it to us. There are Black extensions for emacs, vim,
+VSCode, etc. Or you can just run it standalone after you’re done editing.</p>
+<p>In general, Black follows the <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP-8 style guide</a>. So it’s good to follow that
+to start with.</p>
+<p>Other things to keep in mind:</p>
+<p><strong>General</strong></p>
+<ul class="simple">
+<li><p>Document everything with docstrings.</p></li>
+<li><p>Comment heavily with useful comments. Useful comments don’t say what you
+are doing, they say why you are doing it: <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Loop</span> <span class="pre">over</span> <span class="pre">x</span></code> is a useless
+comment, <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Update</span> <span class="pre">the</span> <span class="pre">elements</span> <span class="pre">of</span> <span class="pre">x</span> <span class="pre">with</span> <span class="pre">our</span> <span class="pre">newly-derived</span> <span class="pre">coefficients</span></code>
+at least tells us something.</p></li>
+<li><p>If your changes are extensive or you are adding a significant module,
+talk to us about adding additional documentation to this manual.</p></li>
+<li><p>All printed, logged, exception, or otherwise formatted strings are now
+expected to be <a class="reference external" href="https://docs.python.org/3/tutorial/inputoutput.html">f-strings</a>.
+If you don’t want to write f-strings, you can always run
+<a class="reference external" href="https://pypi.org/project/flynt/">flynt</a> on your finished code to
+convert. Just remember to run Black afterwards in case flynt breaks any
+rules.</p></li>
+</ul>
+<p><strong>Names</strong></p>
+<p>Program names should be:</p>
+<ul class="simple">
+<li><p>Lowercase, underscored when necessary</p></li>
+<li><p>Without .py suffix (<code class="docutils literal notranslate"><span class="pre">model</span></code>, not <code class="docutils literal notranslate"><span class="pre">model.py</span></code>)</p></li>
+<li><p>Verbs (<code class="docutils literal notranslate"><span class="pre">model</span></code>, not <code class="docutils literal notranslate"><span class="pre">modeler</span></code>)</p></li>
+</ul>
+<p>Package names should be:</p>
+<ul class="simple">
+<li><p>lowercased, underscored when necessary</p></li>
+<li><p>nouns</p></li>
+<li><p>reasonably descriptive</p></li>
+</ul>
+<p>Module names should be:</p>
+<ul class="simple">
+<li><p>Lowercased, underscored when necessary</p></li>
+<li><p>Nouns</p></li>
+<li><p>Reasonably descriptive</p></li>
+</ul>
+<p>Class names should be:</p>
+<ul class="simple">
+<li><p>Camel-cased, starting with uppercase character (<code class="docutils literal notranslate"><span class="pre">MapCalculator</span></code>)</p></li>
+<li><p>Nouns</p></li>
+</ul>
+<p>Instance method names should be:</p>
+<ul class="simple">
+<li><p>Camel-cased, starting with lowercase character [calcRxDistance()]
+(Unless superclass uses another style. In that case, follow the
+superclass style.)</p></li>
+<li><p>Verbs</p></li>
+<li><p>Reasonably descriptive (<code class="docutils literal notranslate"><span class="pre">calcDistance</span></code> is ok, does not need to
+be <code class="docutils literal notranslate"><span class="pre">calculateDistance</span></code>)</p></li>
+<li><p>If not meant to be used by external users, hidden with single
+or double underscores</p></li>
+</ul>
+<p>Class method names should be:</p>
+<ul class="simple">
+<li><p>Camel-cased, starting with lowercase character (<code class="docutils literal notranslate"><span class="pre">calcRxDistance</span></code>)</p></li>
+<li><p>If not meant to be used by external users, hidden with single or
+double underscores.</p></li>
+</ul>
+<p>Module or program function names should be:</p>
+<ul class="simple">
+<li><p>Lowercased, underscored when necessary</p></li>
+<li><p>If not meant to be used by external users, hidden with single or
+double underscores.</p></li>
+</ul>
+<p>Variable names should be:</p>
+<ul class="simple">
+<li><p>Lowercased, underscored when necessary</p></li>
+<li><p>Descriptive when not used as iterators</p></li>
+<li><p>Nouns</p></li>
+</ul>
+<p>Global variable/constant names should be:</p>
+<ul class="simple">
+<li><p>Used sparingly, if at all (especially variables)</p></li>
+<li><p>ALL_CAPS with underscores if necessary</p></li>
+<li><p>Hidden with leading single or double underscores if not meant to
+be used outside their module (which, really, they shouldn’t be.)
+The ALL_CAPS convention should be enough to tell people “do not
+modify this.”</p></li>
+</ul>
+<p>Class variable names should be:</p>
+<ul class="simple">
+<li><p>ALL_CAPS with underscores if necessary</p></li>
+<li><p>If not meant to be public, probably hidden with single or double
+underscores and wrapped with getter function (setter functions
+are probably bad here).  The ALL_CAPS convention should be enough
+to tell people “do not modify this.”</p></li>
+</ul>
+<p>Class instance variable names should be:</p>
+<ul class="simple">
+<li><p>Lowercased, underscored when necessary (fault_distance)</p></li>
+<li><p>If meant to be public, probably hidden with single or double
+underscores and wrapped with getter function (setter functions
+are probably bad here).</p></li>
+<li><p>Possibly hidden with single or double underscores anyway just
+to keep them private.</p></li>
+</ul>
+<p><strong>Misc</strong></p>
+<ul class="simple">
+<li><p>Black will enforce an 88 character line limit when possible</p></li>
+<li><p>4 <em>space</em> indentation for code blocks (not tabs)–most Python
+aware editors should support this out of the box, Black will enforce</p></li>
+<li><p>Whitespace and indentation should follow PEP 8 style guide, Black will
+enforce</p></li>
+<li><p>Single letter class and function names are discouraged;
+single-letter variable names should be restricted to things
+like indices in loops and arrays and should never be “l”,
+“I”, or “O” (lowercase L, uppercase i, and uppercase o,
+respectively).</p></li>
+</ul>
+<p><strong>Exception Handling</strong></p>
+<ul class="simple">
+<li><p>Prefer the built-in Python exceptions where applicable.  The
+full list is found <a class="reference external" href="https://docs.python.org/3.5/library/exceptions.html#exceptions.IOError">here</a>,
+but the exceptions most likely to be used are:</p>
+<ul>
+<li><p>KeyError – Invalid key (as in dict or dict-like object)</p></li>
+<li><p>IndexError – Invalid index (asking for 11th element of 10 element sequence)</p></li>
+<li><p>TypeError – Operation or function applied to wrong type.</p></li>
+<li><p>ValueError – Value out of range (i.e., magnitude &gt; 10)</p></li>
+<li><p>FileNotFoundError – Kinda self-explanatory</p></li>
+</ul>
+</li>
+<li><p>Regardless of Exception type, use a descriptive error message
+so the user or developer has a good idea of what exactly the
+problem was.</p></li>
+</ul>
+<p><strong>File layout</strong></p>
+<ul class="simple">
+<li><p>Imports:</p>
+<ul>
+<li><p>Stdlib imports first</p></li>
+<li><p>Third-party imports second</p></li>
+<li><p>Local imports last</p></li>
+</ul>
+</li>
+<li><p>All globals should be declared at the top of the file
+after the imports</p></li>
+<li><p>Following the globals, the primary class and/or functions
+of a module should come first. Secondary and helper classes
+should follow the primary class. Helper functions and other
+“invisible” stuff should follow. The <code class="docutils literal notranslate"><span class="pre">&quot;__main__&quot;</span></code> block (if
+any) should come last</p></li>
+</ul>
+<p><strong>Example</strong></p>
+<p>Below is a simple example module with a module-level method
+(<code class="docutils literal notranslate"><span class="pre">convenience_calculator</span></code>) and a class (<code class="docutils literal notranslate"><span class="pre">DummyClass</span></code>)
+with a class method (<code class="docutils literal notranslate"><span class="pre">doThingsWithMagnitude</span></code>). For real code
+examples, see
+<a class="reference external" href="https://github.com/usgs/shakemap/tree/master/shakemap/coremods)">the coremods</a>
+directory on Github.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="n">CONSTANT</span> <span class="o">=</span> <span class="mf">5.0</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">convenience_calculator</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the input value multiplied by 5.0.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        value (float): Input numeric value.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The product of the input value and the number 5.0.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">value</span> <span class="o">*</span> <span class="n">CONSTANT</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DummyClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is the one-line description of this class.</span>
+
+<span class="sd">    This is the multi-line,</span>
+<span class="sd">    detailed description of the purpose of this class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">CALC_VERSION</span> <span class="o">=</span> <span class="s1">&#39;1.1&#39;</span>
+    <span class="n">__HIDDEN_CLASS_VARIABLE</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calc_string</span><span class="o">=</span><span class="s1">&#39;not zero&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create an instance of the DummyClass class.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            calc_string (str): A string.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calc_string</span> <span class="o">=</span> <span class="n">calc_string</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">doThingsWithMagnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">mystr</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Do mysterious things with magnitude.</span>
+
+<span class="sd">        More detailed description of the weird and</span>
+<span class="sd">        wonderful things that will be done with magnitude.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            mag (float): Input numeric magnitude value, should</span>
+<span class="sd">                be 0 &lt; mag &lt; 10.</span>
+<span class="sd">            mystr (str): String input that isn&#39;t used.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: 0.0 or (CONSTANT * mag), depending on the calc_string</span>
+<span class="sd">            defined in the constructor.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If input magnitude is outside the</span>
+<span class="sd">                accepted range.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">mag</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">mag</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Input magnitudes must be between 0 and 10.&#39;</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_string</span> <span class="o">==</span> <span class="s1">&#39;not zero&#39;</span><span class="p">:</span>
+            <span class="n">calc_result</span> <span class="o">=</span> <span class="n">mag</span> <span class="o">*</span> <span class="n">CONSTANT</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">calc_result</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">return</span> <span class="n">calc_result</span>
+</pre></div>
+</div>
+</section>
+<section id="workflow">
+<h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">¶</a></h2>
+<p>Below is a description of our Git workflow. This workflow
+is an adaption of a fairly common set of procedures for working with
+GitHub. <a class="reference internal" href="#workflow-figure"><span class="std std-numref">Fig. 3.8</span></a> illustrates the process described
+below.</p>
+<figure class="align-center" id="id1">
+<span id="workflow-figure"></span><a class="reference internal image-reference" href="../_images/workflow.png"><img alt="../_images/workflow.png" src="../_images/workflow.png" width="710" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 3.8 </span><span class="caption-text">ShakeMap Git workflow.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>If they have not previously worked on this project, the developer
+must first fork the main USGS ShakeMap source code repository. This
+fork is
+later called the remote <strong>origin</strong>. The developer then clones the fork
+to the developer’s local development workstation. By cloning from a
+remote repository on GitHub, the local repository automatically sets
+up an origin remote reference. It is a good idea to manually define
+an <strong>upstream</strong> remote reference at this time as well:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone git@github.com:username/shakemap.git
+$ cd shakemap
+$ git remote add upstream https://code.usgs.gov/ghsc/esi/shakemap.git
+</pre></div>
+</div>
+<p>Working in their local repository, the developer creates a feature
+branch based off the master branch and begins work. Source code is
+modified and incremental commits are made against the local feature
+branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git checkout master
+$ git branch branch-name
+$ git checkout branch-name
+$ vim file1 file2 file3
+$ git commit -am &#39;Modified three files to implement ticket-number.&#39;
+$ vim test1 test2 test3
+$ git commit -am &#39;Wrote/updated tests for files changed.&#39;
+</pre></div>
+</div>
+<p>It is important to note that completing the feature involves both
+completing and testing the feature implementation. Having an automated
+test framework helps reduce regression tests moving forward. We use
+Travis CI and tests are automatically initiated when a pull request is
+made. Unit tests for new code are required or the developer’s pull
+request will be rejected. Tests and test data are in the <em>tests</em>
+sub-directory. Running tests before submitting a pull request is
+strongly recommended:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ py.test --cov=. --cov-report html
+</pre></div>
+</div>
+<p>Assuming the tests pass, this command will place a coverage report in
+<em>htmlcov/index.html</em> that links to the covered files and shows which
+lines are covered and which are not. Please strive for complete
+coverage – our goal is to keep project coverage above 90 percent.</p>
+<p>When the developer completes work for this feature, they first integrate
+any changes contributed by other developers (i.e., changes that were made
+to the <strong>upstream</strong> master while they were working on their branch), and then
+push the feature branch
+back to the remote origin. This is done by pulling changes in the <strong>upstream</strong>
+master branch down to the local master, and then rebasing the local feature
+branch against the new local master branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git checkout master
+$ git pull --rebase upstream master
+$ git checkout branch-name
+$ git rebase master
+$ git push origin branch-name
+</pre></div>
+</div>
+<p>Obviously, if there are conflicts while rebasing, the developer must
+resolve them before proceeding. Conflicts can be minimized by
+communication with the ShakeMap team through the issues feature of
+GitHub.</p>
+<p>The developer now creates a pull request for this feature. This is done by
+logging into their account on GitHub, navigating to their fork of the
+repository, and clicking on the “Pull Request” button on that page. Once
+the pull request has been merged by the ShakeMap repositiory admins,
+the developer may delete the feature branch on GitHub and their local
+maching. Then, the developer should rebase their master branch from
+the <strong>upstream</strong> master (which now contains their merged feature)
+and push them to their <strong>origin</strong> master:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git pull --rebase upstream master
+$ git push origin master
+</pre></div>
+</div>
+<p>The developer’s repository is then ready to begin work on a new
+branch.</p>
+<p>For the uninitiated this workflow may seem a bit convoluted, but it
+has proven to work well for many projects. When in doubt, a good rule
+of thumb is: <strong>Never commit to master</strong>. That means that all
+development should take place within feature branches, and the
+local master branch is updated only by pulling from the upstream
+repository.</p>
+</section>
+<section id="dependency-management">
+<h2>Dependency Management<a class="headerlink" href="#dependency-management" title="Link to this heading">¶</a></h2>
+<p>A developer may wish to update ShakeMap Python dependencies. For this
+use case, the install script, included in the repository, has arguments
+to assist with this process.</p>
+<p>The help for the install.sh script (found at the root level of the ShakeMap
+directory) has the following usage help:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">install</span><span class="o">.</span><span class="n">sh</span> <span class="p">[</span> <span class="o">-</span><span class="n">u</span>  <span class="n">Update</span><span class="p">]</span>
+                  <span class="p">[</span> <span class="o">-</span><span class="n">t</span>  <span class="n">Run</span> <span class="n">tests</span> <span class="p">]</span>
+                  <span class="p">[</span> <span class="o">-</span><span class="n">p</span>  <span class="n">Set</span> <span class="n">Python</span> <span class="n">version</span><span class="p">]</span>
+                  <span class="p">[</span> <span class="o">-</span><span class="n">n</span>  <span class="n">Don</span><span class="s1">&#39;t run tests]</span>
+</pre></div>
+</div>
+<p>To upgrade to the latest versions of the Python dependencies:</p>
+<blockquote>
+<div><p>$ bash install.sh -u</p>
+</div></blockquote>
+<p>The “-u” option will ignore the platform-specific “spec” file that is
+included in the repository (“deployment_linux.txt” or “deployment_macos.txt”)
+and create an environment using the “source_environment.yml” file as input.
+This file may contain some pinning of conda versions in order to avoid conflicts
+between dependencies.</p>
+<p>Running the install script with the update option will force tests to run.
+If all of these tests succeed, then a new “spec” file will be created as
+appropriate to your environment (Linux or MacOS). If ANY of these tests fail,
+this file will not be re-created, and the developer should review the code
+being tested to determine if the errors can be resolved by either 1) updating
+the code to match changes in dependencies or 2) by pinning the dependencies to
+versions that work with the current state of ShakeMap code. Updating the code
+is generally the preferred solution, unless the pinning is to recent versions
+and <em>higher</em>. Keeping the ShakeMap code compliant with the most recent versions
+of dependencies will prevent further errors in the future.</p>
+<p>If the developer is working on a Linux platform, they must then have access to a
+MacOS platform, or conversely, a MacOS developer must have access to a Linux platform.
+The developer should run the install script with the “-u” option on <em>both</em> platforms,
+and resolve all issues found on both.</p>
+<p>If the developer wants to test the installation with a version of Python higher
+than the default version found in the install script (“grep DEFAULT_PYVER install.sh”)
+they should use the -p option <em>together</em> with the -u option. Given how quickly things
+change in the Python ecosystem, this is likely to cause errors with tests. Resolve in
+the same way as described above.</p>
+<dl class="simple">
+<dt>The install script depends on the following files:</dt><dd><ul class="simple">
+<li><p>source_environment.yml A yaml file with minimal pinning of python dependencies.
+This file is only ever an input.</p></li>
+<li><p>deployment_linux.txt A text file containing urls of Linux conda packages to download.
+This file is generated by the install script and also used as an input when run with
+the update option.</p></li>
+<li><p>deployment_macos.txt A text file containing urls of MacOS conda packages to download.
+This file is generated by the install script and also used as an input when run with
+the update option.</p></li>
+<li><p>requirements.txt A text file with the packages that must be installed by pip instead of conda.</p></li>
+</ul>
+</dd>
+<dt>Use cases:</dt><dd><ul class="simple">
+<li><p>“Deployment” Users who simply wish to install ShakeMap in order to run it and have no
+interest in development. These users should run <cite>bash install.sh</cite> to create an environment
+using either the deployment_linux.txt or deployment_macos.txt files as input. To automate
+the running of tests following the install users can run <cite>bash install.sh -t</cite>, otherwise they
+can manually run <cite>py.test –cov=.</cite> after the install is complete.</p></li>
+<li><p>“Development” Users who are making routine contributions to the ShakeMap software
+and who do not anticipate adding new dependencies or otherwise changing existing
+dependencies. These users may install much as the “Deployment users, above, with
+the simple <cite>bash install.sh</cite>. The development workflow may then proceed as described
+elsewhere in this document.</p></li>
+<li><p>“Configuration” Users who are contributing to ShakeMap development and need to update
+the ShakeMap code and the Python dependencies. <cite>bash install.sh -u</cite> will update
+dependencies, run tests, and generate a new deployment_&lt;platform&gt;.txt file if the
+tests are successful. If a developer wants to update the environment but NOT run
+tests and NOT generate a new deployment_&lt;platform&gt;.txt file, they can run
+<cite>bash install.sh -un</cite>. Developers who want to update the Python version from the current
+default and the dependencies (many Python packages have version-specific builds) can run
+<cite>bash install.sh -u -p 3.X</cite>. Unless the “-n” option is added, tests will be run and a new
+deployment_&lt;platform&gt;.txt file will be created. Note that this is a fairly major
+step and should be taken only in consultation with the ShakeMap development team.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="core-modules">
+<h2>Core Modules<a class="headerlink" href="#core-modules" title="Link to this heading">¶</a></h2>
+<p>Most developers will be primarily interested in developing modules
+for the <code class="docutils literal notranslate"><span class="pre">shake</span></code> program.
+The source for these modules may be found in the directory
+<em>shakemap/coremods</em>. All of the core modules consist of classes that
+inherit from the CoreModule abstract class found in <em>base.py</em>. When
+developing a new module class, the
+developer must set the class variable <code class="docutils literal notranslate"><span class="pre">command_name</span></code>, and the
+docstring for the new class should specify this command name followed
+by a brief, one-line description of the module’s function. The
+developer must then define the <code class="docutils literal notranslate"><span class="pre">execute</span></code> function to perform the
+action of the new module. The event ID will be found in
+<code class="docutils literal notranslate"><span class="pre">self._eventid</span></code>. The docstring for the <code class="docutils literal notranslate"><span class="pre">execute</span></code> module should
+be a more substantial explanation of the module’s function and outputs
+than is found in the class docstring. See the source for <em>contour.py</em>
+or <em>info.py</em> for examples of the way core modules are implemented.</p>
+<p>If a module is properly implemented, the <code class="docutils literal notranslate"><span class="pre">shake</span></code> program will discover
+it automatically and include it in the list of available modules.</p>
+</section>
+<section id="logging">
+<h2>Logging<a class="headerlink" href="#logging" title="Link to this heading">¶</a></h2>
+<p>Modules should log to <code class="docutils literal notranslate"><span class="pre">self.logger</span></code>. We encourage logging generally
+useful information as <code class="docutils literal notranslate"><span class="pre">self.logger.info</span></code>, particularly anything that
+might normally be put in as a <code class="docutils literal notranslate"><span class="pre">print</span></code> statement. We also encourage
+logging copious amounts of potentially useful information as
+<code class="docutils literal notranslate"><span class="pre">logger.debug</span></code>. Examples include from the <code class="docutils literal notranslate"><span class="pre">model</span></code> core module
+include:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Inside model&#39;</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: nom bias </span><span class="si">%f</span><span class="s1"> nom stddev </span><span class="si">%f</span><span class="s1">; </span><span class="si">%d</span><span class="s1"> stations (time=</span><span class="si">%f</span><span class="s1"> sec)&#39;</span>
+                 <span class="o">%</span> <span class="p">(</span><span class="n">imtstr</span><span class="p">,</span> <span class="n">nominal_bias</span><span class="p">[</span><span class="n">imtstr</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">nom_variance</span><span class="p">),</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">sta_lons_rad</span><span class="p">[</span><span class="n">imtstr</span><span class="p">]),</span> <span class="n">bias_time</span><span class="p">))</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">time for </span><span class="si">%s</span><span class="s1"> distance=</span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">imtstr</span><span class="p">,</span> <span class="n">ddtime</span><span class="p">))</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">time for </span><span class="si">%s</span><span class="s1"> correlation=</span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">imtstr</span><span class="p">,</span> <span class="n">ctime</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="sm4_acknowledgments.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><span class="section-number">4. </span>Acknowledgments</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="sg_operational.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Operational Considerations</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Guidelines for Contributors</a><ul>
+<li><a class="reference internal" href="#coding-style">Coding Style</a></li>
+<li><a class="reference internal" href="#workflow">Workflow</a></li>
+<li><a class="reference internal" href="#dependency-management">Dependency Management</a></li>
+<li><a class="reference internal" href="#core-modules">Core Modules</a></li>
+<li><a class="reference internal" href="#logging">Logging</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=46f083c1"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    </body>
+</html>

@@ -51,10 +51,14 @@ def get_parser():
         "--event",
         nargs=7,
         metavar=("NETID", "TIME", "LON", "LAT", "DEP", "MAG", "LOCSTR"),
-        help="Specify the event parameters (locstr should " "be in quotes)",
+        help=(
+            "Specify the event parameters; LOCSTR should be in quotes, and "
+            "TIME should use format 2026-01-01T12:00:00; event type is set "
+            "to be SCENARIO by default."
+        ),
     )
     parser.add_argument(
-        "--network", help=("Specify network name " "to be filled in event.xml file")
+        "--network", help=("Specify network name to be filled in event.xml file")
     )
     parser.add_argument(
         "-b",
@@ -117,11 +121,12 @@ def assemble_event_dict(arg_event, arg_network, arg_eventid, no_scenario):
         network = ""
 
     eventid = arg_eventid
-    event_type = "ACTUAL"
-    if not no_scenario:
+    event_type = "SCENARIO"
+    if no_scenario:
+        event_type = "ACTUAL"
+    else:
         if not arg_eventid.endswith("_se"):
             eventid = eventid + "_se"
-            event_type = "SCENARIO"
 
     edict = {
         "id": eventid,
